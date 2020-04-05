@@ -1,8 +1,9 @@
 import api from '@/api'
 import * as types from '../mutation-types'
 import router from "@/router";
-import querystring from "query-string"
+import queryString from "query-string"
 import axios from "axios"
+import browser from "webextension-polyfill"
 
 // initial state
 const state = {
@@ -29,12 +30,10 @@ const getters = {
 
 // actions
 const actions = {
-    login({ commit, state }) {
-        console.log("XD");
+    login({ commit, state, dispatch }) {
         const baseUrl = "https://accounts.spotify.com/authorize";
         const clientId = "9e71951e46e74a79ac078ac56f76ba69";
-        const redirectUri = "https://www.spotify.com/";
-        // 
+        const redirectUri = browser.identity.getRedirectURL('authorize');
         // "http://localhost:8080/spotifix-vue/"
         let scopes = new Array(
             "user-read-private",
@@ -52,18 +51,16 @@ const actions = {
 
         commit(types.GET_TOKEN, {});
 
-        const browser = browser || chrome;
+
         const url = `${baseUrl}?client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}&response_type=${responseType}`;
-        browser.tabs.create({ url: url }, tab => this.dispatch('user/getToken', tab));
+        browser.identity.launchWebAuthFlow({ url: url, interactive: true }).then(response => dispatch("getToken", response))
     },
 
-    getToken({ commit, state }, tab) {
+    getToken({ commit, state }, url) {
         if (state.getToken) {
             commit(types.GET_TOKEN_AF);
-            console.log(tab.url);
-            const token = querystring.parse(tab.url.slice(2)).access_token;
-            console.log(token);
-            const time = querystring.parse(tab.url).expires_in;
+            const token = queryString.parse(new URL(url).hash).access_token;
+            const time = queryString.parse(url).expires_in;
             commit(types.SAVE_TOKEN, { token });
         }
     },

@@ -37,21 +37,16 @@
         <span class="mr-2">Latest Release</span>
        
       </v-btn>
-                <v-btn v-on:click="login()">
-                  Zaloguj
       <v-icon>feedback</v-icon>
-    </v-btn>
   </div>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import {mapActions} from "vuex";
 export default {
   name: 'App',
   methods: {
-    ...mapActions("user", ["login"]),
 
   }
 }

@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "@/router";
 import vuetify from '@/plugins/vuetify';
+import Vuex from 'vuex';
 import VuexWebExtensions from 'vuex-webextensions';
 import * as actions from '@/store/actions'
 import * as getters from '@/store/getters'
@@ -12,7 +13,7 @@ import VuexPersistence from 'vuex-persist'
 Vue.use(Vuex)
 
 
-const debug = process.env.NODE_ENV !== 'production'
+// const debug = process.env.NODE_ENV !== 'production'
 
 const vuexLocal = new VuexPersistence({
     storage: window.localStorage,
