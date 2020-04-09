@@ -37,17 +37,41 @@
         <span class="mr-2">Latest Release</span>
        
       </v-btn>
+      <v-btn v-on:click="login">
+      Zaloguj
       <v-icon>feedback</v-icon>
+      </v-btn>
   </div>
+  <div v-if="loggedIn">
+     <v-list
+          dense
+          nav
+          class="py-0"
+        >
+            <v-list-item-avatar >
+              <img :src="userInfo.images[0].url">
+            </v-list-item-avatar>
+          <v-list-item two-line :class="true && 'px-0'">
+            <v-list-item-content>
+              <v-list-item-title>{{userInfo.display_name}}</v-list-item-title>
+              <v-list-item-subtitle>{{userInfo.email}}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+     </v-list>
+     </div>
     </v-content>
   </v-app>
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'App',
+  computed:{
+    ...mapGetters('user',['loggedIn', 'userInfo'])
+  },
   methods: {
-
+    ...mapActions('user',['login'])
   }
 }
 </script>

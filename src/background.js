@@ -33,6 +33,5 @@ const store = new Vuex.Store({
 })
 
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    store.dispatch("user/login");
 
 })
