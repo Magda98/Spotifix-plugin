@@ -18,4 +18,20 @@ export default {
             cb(e.response.data.error);
         })
     },
+    playSong(cb, data) {
+        console.log(data);
+        axios.put(`me/player/play?device_id=${data.id}`, {
+            uris: [data.track]
+        }).then(response => {
+            cb(response.data)
+        }).catch(e => cb(e.response.data.error))
+    },
+    getSavedTracks(cb) {
+        axios.get(`me/tracks`, {
+                limit: 50
+            }).then(response => {
+                cb(response.data)
+            })
+            .catch(e => cb(e.response.data.error))
+    },
 };

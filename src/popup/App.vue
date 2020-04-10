@@ -59,6 +59,9 @@
           </v-list-item>
      </v-list>
      </div>
+     <v-card v-on:click="playSong(saved.items[2].track.uri)" v-if="saved.items">
+       {{saved.items[2].track.name}}
+     </v-card>
     </v-content>
   </v-app>
 </template>
@@ -68,10 +71,17 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'App',
   computed:{
-    ...mapGetters('user',['loggedIn', 'userInfo'])
+    ...mapGetters('user',['loggedIn', 'userInfo']),
+    ...mapGetters('spotify', ['saved'])
   },
   methods: {
-    ...mapActions('user',['login'])
+    ...mapActions('user',['login']),
+    ...mapActions('spotify', ['getUserTracks']),
+     ...mapActions('player', ['playSong'])
+  },
+  created(){
+    console.log(this.saved);
+
   }
 }
 </script>
