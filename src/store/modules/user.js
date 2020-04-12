@@ -57,10 +57,10 @@ const actions = {
     },
 
     getToken({ commit, state }, url) {
+        url = url.payload ? url.payload : url;
         if (state.getToken) {
             commit(types.GET_TOKEN_AF);
             const token = queryString.parse(new URL(url).hash).access_token;
-            const time = queryString.parse(url).expires_in;
             commit(types.SAVE_TOKEN, { token });
         }
     },

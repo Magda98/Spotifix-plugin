@@ -47,6 +47,7 @@ new Vue({
     store,
     vuetify,
     created() {
+        console.log(Vue.prototype.$player);
         this.$store.subscribe((mutation, state) => {
             if (mutation.type === 'user/SAVE_TOKEN') {
                 axios.defaults.headers['Authorization'] = `Bearer ${state.user.token}`;
@@ -55,10 +56,8 @@ new Vue({
         if (this.$store.state.user.token) {
             axios.defaults.headers['Authorization'] = `Bearer ${this.$store.state.user.token}`;
             this.$store.dispatch("user/getUserInfo");
-            this.$store.dispatch("player/spotifyPlayer");
             this.$store.dispatch("spotify/getUserTracks");
         }
-        this.$store.dispatch("player/spotifyPlayer");
     },
     render: h => h(App)
 }).$mount("#app");

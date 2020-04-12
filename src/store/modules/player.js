@@ -15,6 +15,7 @@ const state = {
         currentTrack: false,
         songDuration: 100,
         songCurrentMilisec: 0,
+        player: {}
     }
     // getters
 const getters = {
@@ -59,26 +60,30 @@ const actions = {
     updateSongTime({ commit }, data) {
         commit("seekTime", data);
     },
-    pause() {
-        Vue.prototype.$player.pause();
+    pause({ state }) {
+        state.player.pause();
     },
-    resume() {
-        Vue.prototype.$player.resume();
+    resume({ state }) {
+        console.log(state.player);
+        state.player.resume();
 
     },
-    prev() {
-        Vue.prototype.$player.previousTrack();
+    prev({ state }) {
+        state.player.previousTrack();
     },
-    next() {
-        Vue.prototype.$player.nextTrack();
+    next({ state }) {
+        state.player.nextTrack();
     },
     seek({ state }) {
-        Vue.prototype.$player.seek(state.songCurrentMilisec);
+        state.player.seek(state.songCurrentMilisec);
     }
 }
 
 // mutations
 const mutations = {
+    savePlayer(state, data) {
+        state.player = data;
+    },
     seekTime(state, data) {
         state.songCurrentMilisec = data;
         state.songCurrentSec = data / 1000;

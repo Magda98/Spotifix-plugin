@@ -37,10 +37,6 @@
         <span class="mr-2">Latest Release</span>
        
       </v-btn>
-      <v-btn v-on:click="login">
-      Zaloguj
-      <v-icon>feedback</v-icon>
-      </v-btn>
   </div>
   <div v-if="loggedIn">
      <v-list
@@ -62,26 +58,28 @@
      <v-card v-on:click="playSong(saved.items[2].track.uri)" v-if="saved.items">
        {{saved.items[2].track.name}}
      </v-card>
+     <player v-if="loggedIn"/> 
     </v-content>
   </v-app>
 </template>
 
 <script>
+import player from "../components/player"
+import browser from "webextension-polyfill"
 import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'App',
+  components: {player},
   computed:{
     ...mapGetters('user',['loggedIn', 'userInfo']),
     ...mapGetters('spotify', ['saved'])
   },
   methods: {
-    ...mapActions('user',['login']),
     ...mapActions('spotify', ['getUserTracks']),
-     ...mapActions('player', ['playSong'])
+    ...mapActions('player', ['playSong'])
   },
   created(){
-    console.log(this.saved);
-
+    console.log(this.$player);
   }
 }
 </script>

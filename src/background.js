@@ -56,23 +56,23 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         store.dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
     });
     player.addListener('playback_error', ({ message }) => {
-        if (state.currentTrack.uri)
-            store.dispatch("player/playSong", { uri: state.currentTrack.uri });
+        if (store.state.currentTrack.uri)
+            store.dispatch("player/playSong", { uri: store.state.currentTrack.uri });
         else
             store.dispatch("toastMessage/alert", { message: "No song was loaded", type: "error" });
     });
 
     // Playback status updates
     player.addListener('player_state_changed', statePlayer => {
-        commit("saveCurrentTrack", statePlayer.track_window.current_track);
+        store.commit("player/saveCurrentTrack", statePlayer.track_window.current_track);
         if (!statePlayer.paused) {
-            store.commit("playingSong", statePlayer);
+            store.commit("player/playingSong", statePlayer);
             if (!store.state.interval)
-                store.commit("setInt", setInterval(() => { commit("updateTime") }, 1000));
+                store.commit("player/setInt", setInterval(() => { store.commit("player/updateTime") }, 1000));
         } else {
-            commit("pause");
+            store.commit("player/pause");
             if (store.state.interval)
-                store.commit("setInt", false);
+                store.commit("player/setInt", false);
         }
     });
 
@@ -92,12 +92,15 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     // Connect to the player!
     player.connect();
-    Vue.prototype.$player = player;
+    store.commit("player/savePlayer", player);
+    // Vue.prototype.$player = player;
 };
+
+
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    console.log("żaba na monocyklu")
-    console.log(store.getters['user/getToken'])
+    store.dispatch("user/login");
 })
-browser.browserAction.onClicked.addListener(() => {
-    console.log("o cholera co sie stalo");
+browser.runtime.onMessage.addListener((request) => {
+    console.log(request)
+    store.dispatch(request);
 });
