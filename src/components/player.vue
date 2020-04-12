@@ -75,11 +75,15 @@ export default {
     methods:{
         ...mapActions("player", ["pause", "resume", "next", "prev", "seek", "updateSongTime"]),
         resumed(){
-          if(!this.playing){this.resume();}
+         
+          if(!this.playing){
+             browser.runtime.sendMessage("player/resume");
+          }
         },
         paused(){
+        
           if(this.playing){
-            this.pause();
+             browser.runtime.sendMessage("player/pause");
           }
         }
     },

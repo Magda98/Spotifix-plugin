@@ -92,8 +92,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     // Connect to the player!
     player.connect();
-    store.commit("player/savePlayer", player);
-    // Vue.prototype.$player = player;
+    Vue.prototype.$player = player;
 };
 
 
