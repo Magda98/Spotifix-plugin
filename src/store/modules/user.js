@@ -30,7 +30,7 @@ const getters = {
 
 // actions
 const actions = {
-    login({ commit, state, dispatch }) {
+    async login({ commit, state, dispatch }) {
         const baseUrl = "https://accounts.spotify.com/authorize";
         const clientId = "9e71951e46e74a79ac078ac56f76ba69";
         const redirectUri = browser.identity.getRedirectURL('authorize');
@@ -48,12 +48,9 @@ const actions = {
         );
         const scope = scopes.join("%20");
         const responseType = "token";
-
         commit(types.GET_TOKEN, {});
-
-
         const url = `${baseUrl}?client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}&response_type=${responseType}`;
-        browser.identity.launchWebAuthFlow({ url: url, interactive: true }).then(response => dispatch("getToken", response))
+        await browser.identity.launchWebAuthFlow({ url: url, interactive: true }).then(response => dispatch("getToken", response))
     },
 
     getToken({ commit, state }, url) {

@@ -10,11 +10,11 @@ const state = {
         DevId: 1,
         songCurrentSec: 0,
         maxSongSec: 0,
-        playing: false,
         interval: false,
         currentTrack: false,
         songDuration: 100,
         songCurrentMilisec: 0,
+        player: {}
     }
     // getters
 const getters = {
@@ -22,8 +22,8 @@ const getters = {
     songCurrentMilisec: state => state.songCurrentMilisec,
     currentSec: state => state.songCurrentSec,
     maxSec: state => state.maxSongSec,
-    playing: state => state.playing,
-    currentTrack: state => state.currentTrack
+    currentTrack: state => state.currentTrack,
+    player: state => state.player
 
 }
 
@@ -50,7 +50,7 @@ const actions = {
         }, { "uri": uri, "id": state.DevId });
     },
     updateSec({ commit, state }) {
-        if (!state.playing)
+        if (!state.player.paused)
             commit("setInt", setInterval(() => { commit("updateTime"); }, 1000));
         else {
             commit("setInt", false);
@@ -79,6 +79,9 @@ const actions = {
 
 // mutations
 const mutations = {
+    player(state, data) {
+        state.player = data;
+    },
     seekTime(state, data) {
         state.songCurrentMilisec = data;
         state.songCurrentSec = data / 1000;
@@ -87,15 +90,17 @@ const mutations = {
         state.currentTrack = data;
     },
     setInt(state, data) {
-        if (!state.interval) {
+        if (data != false) {
             state.interval = clearInterval(state.interval);
             state.interval = data;
         } else {
             state.interval = clearInterval(state.interval);
             state.interval = false;
-            state.playing = false;
         }
 
+    },
+    clearInt(state) {
+        state.interval = clearInterval(state.interval);
     },
     updateTime(state) {
         state.songCurrentMilisec += 1000;
@@ -109,11 +114,7 @@ const mutations = {
         state.songCurrentSec = data.position / 1000;
         state.songDuration = data.duration;
         state.songCurrentMilisec = data.position;
-        state.playing = true;
     },
-    pause(state) {
-        state.playing = false;
-    }
 
 }
 

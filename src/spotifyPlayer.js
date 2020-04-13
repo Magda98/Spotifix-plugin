@@ -28,15 +28,14 @@ export function initialize() {
         // Playback status updates
         player.addListener('player_state_changed', statePlayer => {
             console.log(statePlayer);
+            Vue.prototype.$store.commit("player/player", statePlayer);
             Vue.prototype.$store.commit("player/saveCurrentTrack", statePlayer.track_window.current_track);
             if (!statePlayer.paused) {
                 Vue.prototype.$store.commit("player/playingSong", statePlayer);
                 if (!Vue.prototype.$store.state.user.interval)
                     Vue.prototype.$store.commit("player/setInt", setInterval(() => { Vue.prototype.$store.commit("player/updateTime") }, 1000));
             } else {
-                Vue.prototype.$store.commit("player/pause");
-                if (Vue.prototype.$store.state.user.interval)
-                    Vue.prototype.$store.commit("player/setInt", false);
+                Vue.prototype.$store.commit("player/setInt", false);
             }
         });
 

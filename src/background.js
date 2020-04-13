@@ -38,12 +38,16 @@ const store = new Vuex.Store({
     })]
 })
 Vue.prototype.$store = store;
-
-initialize();
-browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    store.dispatch("user/login");
+store.dispatch("user/login").then(
+    initialize()
+)
+store.subscribe((mutation, state) => {
+    if (mutation.type === 'user/SAVE_TOKEN') {
+        initialize()
+    }
 })
+browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {})
 browser.runtime.onMessage.addListener((request) => {
     if (request.type == 'player')
-        store.dispatch(request.msg);
+        store.dispatch(request.msg, request.value ? request.value : null);
 });

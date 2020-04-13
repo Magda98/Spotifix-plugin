@@ -30,11 +30,11 @@
           <v-btn v-on:click="prev">
       <v-icon>mdi-skip-previous-circle-outline</v-icon>
     </v-btn>
-    <v-btn v-if="!playing" v-on:click="resumed()">
+    <v-btn v-if="player.paused" v-on:click="resumed()">
       <v-icon style="font-size: 35px;">mdi-play-circle-outline</v-icon>
     </v-btn>
 
-    <v-btn v-if="playing" v-on:click="paused()" >
+    <v-btn v-if="!player.paused" v-on:click="paused()" >
       <v-icon style="font-size: 35px;">mdi-pause-circle-outline</v-icon>
     </v-btn>
     <v-btn v-on:click="next">
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import browser from "webextension-polyfill"
 export default {
     data(){
@@ -65,14 +65,13 @@ export default {
       }
     },
      computed: {
-        ...mapGetters("player", ["currentSec", "maxSec", "playing", "currentTrack", "songCurrentMilisec", "songDuration"]),
+        ...mapGetters("player", ["currentSec", "maxSec", "currentTrack", "songCurrentMilisec", "songDuration", "player"]),
           slider: {
          get() { return this.songCurrentMilisec },
-         set(value) { this.updateSongTime(value)},
+         set(value) { browser.runtime.sendMessage({msg:'player/updateSongTime', type:'player', value: value});},
       },
     },
     methods:{
-        ...mapActions("player", ["updateSongTime"]),
         next(){
           browser.runtime.sendMessage({msg:'player/next', type:'player'});
         },
@@ -83,12 +82,12 @@ export default {
           browser.runtime.sendMessage({msg:'player/seek', type:'player'})
         },
         resumed(){
-          if(!this.playing){
+          if(this.player.paused){
              browser.runtime.sendMessage({msg:'player/resume', type:'player'});
           }
         },
         paused(){
-          if(this.playing){
+          if(!this.player.paused){
              browser.runtime.sendMessage({msg:'player/pause', type:'player'});
           }
         }

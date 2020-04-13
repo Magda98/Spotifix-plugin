@@ -39,8 +39,7 @@ const store = new Vuex.Store({
     strict: true,
     plugins: [vuexLocal.plugin, VuexWebExtensions({
         syncActions: false,
-        syncMutations: false,
-        ignoredMutations: ['setInt', 'updateTime', 'pause', 'saveCurrentTrack', 'playingSong', 'saveId']
+        ignoredMutations: ['player/seekTime', 'player/setInt', 'player/updateTime', 'player/saveCurrentTrack', 'player/saveId']
     })]
 })
 
