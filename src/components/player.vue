@@ -3,10 +3,9 @@
     dark
     id="sp-nav"
   >
-   <v-row justify="center" align="center">
-       <v-col  v-if="$vuetify.breakpoint.mdAndUp" cols="2"> </v-col>
-       <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="2" >
-        <v-card v-if="currentTrack.name && $vuetify.breakpoint.mdAndUp" color="#2E2E2E"  >
+   <v-row justify="center" align="center" style="display:flex;">
+       <v-col cols="12" >
+        <v-card flat color="#2E2E2E"  >
         <div class="d-flex flex-no-wrap justify-space-between">
               <div>
     <v-card-title   style="font-size:12px !important; line-height:12px;"
@@ -27,7 +26,7 @@
             </div>
           </v-card>
        </v-col>
-       <v-col md="3" lg="3" sm="12" id="sp-palyer" style="display:flex;justify-content:center;align-items:center;">
+       <v-col  md="12" lg="12" sm="12" id="sp-palyer" style="display:flex;justify-content:center;align-items:center;">
           <v-btn v-on:click="prev">
       <v-icon>mdi-skip-previous-circle-outline</v-icon>
     </v-btn>
@@ -42,7 +41,7 @@
       <v-icon >mdi-skip-next-circle-outline</v-icon>
     </v-btn>
        </v-col>
-        <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="3">
+        <v-col  cols="12">
     <v-slider 
           :label="(parseInt(maxSec/60)).toString() +':'+( parseInt(maxSec%60) < 10 ? ('0'+parseInt(maxSec%60).toString()) : parseInt(maxSec%60).toString() )"
           min="0"
@@ -73,17 +72,24 @@ export default {
       },
     },
     methods:{
-        ...mapActions("player", ["pause", "resume", "next", "prev", "seek", "updateSongTime"]),
+        ...mapActions("player", ["updateSongTime"]),
+        next(){
+          browser.runtime.sendMessage({msg:'player/next', type:'player'});
+        },
+        prev(){
+          browser.runtime.sendMessage({msg:'player/prev', type:'player'})
+        },
+        seek(){
+          browser.runtime.sendMessage({msg:'player/seek', type:'player'})
+        },
         resumed(){
-         
           if(!this.playing){
-             browser.runtime.sendMessage("player/resume");
+             browser.runtime.sendMessage({msg:'player/resume', type:'player'});
           }
         },
         paused(){
-        
           if(this.playing){
-             browser.runtime.sendMessage("player/pause");
+             browser.runtime.sendMessage({msg:'player/pause', type:'player'});
           }
         }
     },
@@ -99,7 +105,7 @@ export default {
 }
 @media only screen and (max-width: 900px) {
   #sp-nav{
-  height: 45px !important;
+  height: 200px !important;
 }
 .col-sm-12{
   padding: 0 !important;

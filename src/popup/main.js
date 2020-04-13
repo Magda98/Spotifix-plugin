@@ -37,7 +37,11 @@ const store = new Vuex.Store({
         RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION // this mutation **MUST** be named "RESTORE_MUTATION"
     },
     strict: true,
-    plugins: [vuexLocal.plugin, VuexWebExtensions()]
+    plugins: [vuexLocal.plugin, VuexWebExtensions({
+        syncActions: false,
+        syncMutations: false,
+        ignoredMutations: ['setInt', 'updateTime', 'pause', 'saveCurrentTrack', 'playingSong', 'saveId']
+    })]
 })
 
 Vue.config.productionTip = false;
@@ -47,7 +51,6 @@ new Vue({
     store,
     vuetify,
     created() {
-        console.log(Vue.prototype.$player);
         this.$store.subscribe((mutation, state) => {
             if (mutation.type === 'user/SAVE_TOKEN') {
                 axios.defaults.headers['Authorization'] = `Bearer ${state.user.token}`;
@@ -57,7 +60,8 @@ new Vue({
             axios.defaults.headers['Authorization'] = `Bearer ${this.$store.state.user.token}`;
             this.$store.dispatch("user/getUserInfo");
             this.$store.dispatch("spotify/getUserTracks");
-        }
+        } else
+            store.dispatch("user/login");
     },
     render: h => h(App)
 }).$mount("#app");
