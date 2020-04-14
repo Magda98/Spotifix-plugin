@@ -46,6 +46,7 @@ store.subscribe((mutation, state) => {
         initialize()
     }
 })
+initialize()
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {})
 browser.runtime.onMessage.addListener((request) => {
     if (request.type == 'player')

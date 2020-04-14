@@ -7,11 +7,13 @@ import axios from "axios"
 // initial state
 const state = {
     savedTracks: {},
+    search: false
 }
 
 // getters
 const getters = {
     saved: state => state.savedTracks,
+    searched: state => state.search
 }
 
 // actions
@@ -25,6 +27,16 @@ const actions = {
             }
         })
     },
+    search({ commit }, data) {
+        api.search(result => {
+            if (result.status === 401) {
+                this.dispatch("user/login");
+            } else {
+                commit("saveSearch", result);
+            }
+
+        }, data)
+    }
 }
 
 // mutations
@@ -32,6 +44,10 @@ const mutations = {
     saveTracks(state, { tracks }) {
         state.savedTracks = tracks;
         state.albumSongs = tracks;
+    },
+    saveSearch(state, search) {
+        state.search = search;
+        console.log(search);
     },
 }
 

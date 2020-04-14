@@ -1,11 +1,11 @@
 <template>
   <v-bottom-navigation
-    dark
+    light
     id="sp-nav"
   >
    <v-row justify="center" align="center" style="display:flex;">
        <v-col cols="12" >
-        <v-card flat color="#2E2E2E"  >
+        <v-card flat  color="primary"  >
         <div class="d-flex flex-no-wrap justify-space-between">
               <div>
     <v-card-title   style="font-size:12px !important; line-height:12px;"
@@ -28,20 +28,20 @@
        </v-col>
        <v-col  md="12" lg="12" sm="12" id="sp-palyer" style="display:flex;justify-content:center;align-items:center;">
           <v-btn v-on:click="prev">
-      <v-icon>mdi-skip-previous-circle-outline</v-icon>
+      <v-icon  color="primary">mdi-skip-previous-circle-outline</v-icon>
     </v-btn>
     <v-btn v-if="player.paused" v-on:click="resumed()">
-      <v-icon style="font-size: 35px;">mdi-play-circle-outline</v-icon>
+      <v-icon  color="primary" style="font-size: 35px;">mdi-play-circle-outline</v-icon>
     </v-btn>
 
     <v-btn v-if="!player.paused" v-on:click="paused()" >
-      <v-icon style="font-size: 35px;">mdi-pause-circle-outline</v-icon>
+      <v-icon  color="primary" style="font-size: 35px;">mdi-pause-circle-outline</v-icon>
     </v-btn>
     <v-btn v-on:click="next">
-      <v-icon >mdi-skip-next-circle-outline</v-icon>
+      <v-icon  color="primary" >mdi-skip-next-circle-outline</v-icon>
     </v-btn>
        </v-col>
-        <v-col  cols="12">
+        <v-col  cols="11" style="margin:auto;">
     <v-slider 
           :label="(parseInt(maxSec/60)).toString() +':'+( parseInt(maxSec%60) < 10 ? ('0'+parseInt(maxSec%60).toString()) : parseInt(maxSec%60).toString() )"
           min="0"

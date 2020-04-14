@@ -61,6 +61,7 @@ new Vue({
             this.$store.dispatch("spotify/getUserTracks");
         } else
             store.dispatch("user/login");
+        store.dispatch("user/login")
     },
     render: h => h(App)
 }).$mount("#app");
