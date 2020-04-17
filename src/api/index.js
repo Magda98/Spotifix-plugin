@@ -35,7 +35,7 @@ export default {
     },
     search(cb, data) {
         data = encodeURIComponent(data.trim())
-        axios.get(`search?q=${data}&type=album,track,artist`).then(response => {
+        axios.get(`search?q=${data}&type=album,track,artist&limit=6`).then(response => {
                 cb(response.data)
             })
             .catch(e => cb(e.response.data.error))

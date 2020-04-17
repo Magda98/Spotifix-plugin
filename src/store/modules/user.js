@@ -30,7 +30,7 @@ const getters = {
 
 // actions
 const actions = {
-    async login({ commit, state, dispatch }) {
+    login({ commit, state, dispatch }, interactive) {
         const baseUrl = "https://accounts.spotify.com/authorize";
         const clientId = "9e71951e46e74a79ac078ac56f76ba69";
         const redirectUri = browser.identity.getRedirectURL('authorize');
@@ -50,7 +50,8 @@ const actions = {
         const responseType = "token";
         commit(types.GET_TOKEN, {});
         const url = `${baseUrl}?client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}&response_type=${responseType}`;
-        await browser.identity.launchWebAuthFlow({ url: url, interactive: true }).then(response => dispatch("getToken", response))
+        browser.identity.launchWebAuthFlow({ url: url, interactive: interactive }).then(response => dispatch("getToken", response)).catch(() => dispatch("logout"))
+
     },
 
     getToken({ commit, state }, url) {
@@ -64,7 +65,7 @@ const actions = {
     getUserInfo({ commit, state }) {
         api.getUserInfo(userInfo => {
             if (userInfo.status === 401) {
-                this.dispatch("user/login");
+                this.dispatch("user/login", false);
             } else {
                 commit("saveUserInfo", { userInfo });
             }
@@ -81,6 +82,9 @@ const mutations = {
     saveUserInfo(state, { userInfo }) {
         state.userInfo = userInfo
         state.logged_in = true
+    },
+    logout(state) {
+        state.logged_in = false;
     },
     [types.LOGIN_USER](state) {
         state.logged_in = true

@@ -19,8 +19,7 @@
     "background": {
         "scripts": [
             "js/background.js", "spotify.js"
-        ],
-        "persistent": false
+        ]
     },
     "browser_action": {
         "default_popup": "popup.html",

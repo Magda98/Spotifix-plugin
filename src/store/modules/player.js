@@ -32,7 +32,7 @@ const actions = {
     playSong({ state, commit, dispatch }, data) {
         api.playSong((song) => {
             if (song.status === 401)
-                dispatch("user/login", {}, { root: true });
+                dispatch("user/login", false, { root: true });
             else if (song.status === 403)
                 dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
             else if (song.status === 404)
@@ -42,7 +42,7 @@ const actions = {
     playPlaylist({ state, commit }, uri) {
         api.playPlaylist((song) => {
             if (song.status === 401)
-                this.dispatch("user/login");
+                this.dispatch("user/login", false);
             else if (song.status === 403)
                 this.dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
             else if (song.status === 404)

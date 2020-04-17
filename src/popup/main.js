@@ -60,8 +60,7 @@ new Vue({
             this.$store.dispatch("user/getUserInfo");
             this.$store.dispatch("spotify/getUserTracks");
         } else
-            store.dispatch("user/login");
-        store.dispatch("user/login")
+            store.dispatch("user/login", false);
     },
     render: h => h(App)
 }).$mount("#app");

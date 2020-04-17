@@ -12,6 +12,8 @@ import browser from "webextension-polyfill"
 import axios from "axios";
 import { initialize } from '@/spotifyPlayer'
 
+
+window.onSpotifyWebPlaybackSDKReady = () => {};
 Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 const vuexLocal = new VuexPersistence({
@@ -38,9 +40,7 @@ const store = new Vuex.Store({
     })]
 })
 Vue.prototype.$store = store;
-store.dispatch("user/login").then(
-    initialize()
-)
+store.dispatch("user/login", false);
 store.subscribe((mutation, state) => {
     if (mutation.type === 'user/SAVE_TOKEN') {
         initialize()

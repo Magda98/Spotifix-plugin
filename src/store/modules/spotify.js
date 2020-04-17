@@ -21,7 +21,7 @@ const actions = {
     getUserTracks({ commit }) {
         api.getSavedTracks(tracks => {
             if (tracks.status === 401) {
-                this.dispatch("user/login");
+                this.dispatch("user/login", false);
             } else {
                 commit("saveTracks", { tracks });
             }
@@ -30,7 +30,7 @@ const actions = {
     search({ commit }, data) {
         api.search(result => {
             if (result.status === 401) {
-                this.dispatch("user/login");
+                this.dispatch("user/login", false);
             } else {
                 commit("saveSearch", result);
             }
