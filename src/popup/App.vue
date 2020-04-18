@@ -20,7 +20,7 @@
      </v-list>
      </div>
      <div v-else>
-       <v-btn v-on:click="login(true)" outlined>
+       <v-btn v-on:click="loginUser()" outlined>
          zaloguj
        </v-btn>
       </div> 
@@ -59,7 +59,7 @@
         cols="3"
         style="margin: 0 auto;"
       >
-      <v-card flat @click="playSong(item.uri)">
+      <v-card flat @click="playPlaylist(item.uri)">
               <v-avatar
                 class="ma-3"
                 size="100"
@@ -90,8 +90,12 @@ export default {
   },
   methods: {
     ...mapActions('spotify', ['getUserTracks', 'search']),
-    ...mapActions('player', ['playSong']),
-    ...mapActions('user', ['login'])
+    ...mapActions('player', ['playSong', 'playPlaylist']),
+    ...mapActions('user', ['login']),
+    loginUser(){
+      window.close();
+      this.login(true);
+    }
   },
   created(){
   },

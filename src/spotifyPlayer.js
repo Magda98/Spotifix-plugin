@@ -30,15 +30,14 @@ export async function initialize() {
         Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
     });
     player.addListener('playback_error', ({ message }) => {
-        if (Vue.prototype.$store.state.currentTrack.uri)
-            Vue.prototype.$store.dispatch("player/playSong", { uri: Vue.prototype.$store.state.currentTrack.uri });
+        if (Vue.prototype.$store.state.player.currentTrack.uri)
+            Vue.prototype.$store.dispatch("player/playSong", Vue.prototype.$store.state.player.currentTrack.uri);
         else
             Vue.prototype.$store.dispatch("toastMessage/alert", { message: "No song was loaded", type: "error" });
     });
 
     // Playback status updates
     player.addListener('player_state_changed', statePlayer => {
-        console.log(statePlayer);
         Vue.prototype.$store.commit("player/player", statePlayer);
         Vue.prototype.$store.commit("player/saveCurrentTrack", statePlayer.track_window.current_track);
         if (!statePlayer.paused) {

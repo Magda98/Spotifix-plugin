@@ -22,6 +22,7 @@ const vuexLocal = new VuexPersistence({
     strictMode: true
 })
 
+
 const store = new Vuex.Store({
     actions,
     getters,
@@ -49,6 +50,8 @@ store.subscribe((mutation, state) => {
 initialize()
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {})
 browser.runtime.onMessage.addListener((request) => {
-    if (request.type == 'player')
+    if (request.type == 'player') {
         store.dispatch(request.msg, request.value ? request.value : null);
+
+    }
 });

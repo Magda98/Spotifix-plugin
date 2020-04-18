@@ -25,6 +25,13 @@ export default {
             cb(response.data)
         }).catch(e => cb(e.response.data.error))
     },
+    playPlaylist(cb, data) {
+        axios.put(`me/player/play?device_id=${data.id}`, {
+            context_uri: data.uri
+        }).then(response => {
+            cb(response.data)
+        }).catch(e => cb(e.response.data.error))
+    },
     getSavedTracks(cb) {
         axios.get(`me/tracks`, {
                 limit: 50
