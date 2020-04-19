@@ -26,8 +26,8 @@
       </div> 
     </v-app-bar>
     <v-content style="max-height:fit-content;">
-          <v-text-field prepend-inner-icon="mdi-magnify" dense outlined autocomplete="off" style="margin: 5px 20px;" height="39px"
-        @focus="searchInp = true" v-model="searchModel" v-on:input="searchModel != ''? search($event): null">
+          <v-text-field clearable  prepend-inner-icon="mdi-magnify" dense outlined autocomplete="off" style="margin: 5px 20px;    height: 35px;"
+       @click:clear="searchInp=false" v-model="searchModel" v-on:input="searchModel != ''? search($event): null;searchInp = true ">
         </v-text-field>
         <v-card :style="searchModel != '' ? ' width: 100%;height: 100%; max-height:250px;overflow: hidden;' : 'max-height: 0px; height: 0px;'" v-if="searched.tracks && searchInp && searchModel != ''">
           <div style=" width: 100%; overflow-y: scroll; padding-right: 17px; box-sizing: content-box;height: 100%; ">
@@ -73,8 +73,9 @@
     </v-row>
           </div>
     </v-card>
-    </v-content>
      <player v-if="loggedIn"/> 
+    </v-content>
+    
   </v-app>
 </template>
 
@@ -119,5 +120,9 @@ body{
 }
 .v-application--wrap {
       min-height: auto !important;
+}
+ div.v-input__slot:before {
+    border-image: none !important;
+    border-color: transparent !important;
 }
 </style>

@@ -47,7 +47,6 @@ const mutations = {
     },
     saveSearch(state, search) {
         state.search = search;
-        console.log(search);
     },
 }
 

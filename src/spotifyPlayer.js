@@ -53,10 +53,9 @@ export async function initialize() {
     const ready = new Promise((resolve) => {
         player.addListener('ready', ({ device_id }) => {
             Vue.prototype.$store.commit("player/saveId", device_id);
-            // console.log('Ready with Device ID', device_id);
+            console.log('Ready with Device ID', device_id);
             Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Player is ready", type: "success" });
             Vue.prototype.$store.commit("player/setInt", false);
-            console.log("READY");
             resolve(player);
         });
     });

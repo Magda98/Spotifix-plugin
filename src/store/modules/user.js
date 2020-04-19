@@ -54,12 +54,13 @@ const actions = {
 
     },
 
-    getToken({ commit, state }, url) {
+    getToken({ commit, state, dispatch }, url) {
         url = url.payload ? url.payload : url;
         if (state.getToken) {
             commit(types.GET_TOKEN_AF);
             const token = queryString.parse(new URL(url).hash).access_token;
             commit(types.SAVE_TOKEN, { token });
+            dispatch("getUserInfo");
         }
     },
     getUserInfo({ commit, state }) {
