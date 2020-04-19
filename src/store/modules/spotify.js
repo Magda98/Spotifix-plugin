@@ -7,13 +7,15 @@ import axios from "axios"
 // initial state
 const state = {
     savedTracks: {},
-    search: false
+    search: false,
+    liked: [],
 }
 
 // getters
 const getters = {
     saved: state => state.savedTracks,
-    searched: state => state.search
+    searched: state => state.search,
+    liked: state => state.liked
 }
 
 // actions
@@ -27,14 +29,21 @@ const actions = {
             }
         })
     },
-    search({ commit }, data) {
+    search({ commit, dispatch }, data) {
         api.search(result => {
             if (result.status === 401) {
                 this.dispatch("user/login", false);
             } else {
                 commit("saveSearch", result);
+                const ids = result.tracks.items.map(x => x.id);
+                dispatch("checkSavedTracks", ids);
             }
 
+        }, data)
+    },
+    checkSavedTracks({ commit }, data) {
+        api.checkSavedTracks(result => {
+            commit("saveChecked", result);
         }, data)
     }
 }
@@ -48,6 +57,9 @@ const mutations = {
     saveSearch(state, search) {
         state.search = search;
     },
+    saveChecked(state, result) {
+        state.liked = result;
+    }
 }
 
 export default {

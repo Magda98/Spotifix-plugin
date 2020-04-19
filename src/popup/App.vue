@@ -26,20 +26,20 @@
       </div> 
     </v-app-bar>
     <v-content style="max-height:fit-content;">
-          <v-text-field clearable  prepend-inner-icon="mdi-magnify" dense outlined autocomplete="off" style="margin: 5px 20px;    height: 35px;"
+          <v-text-field clearable  prepend-inner-icon="mdi-magnify" dense outlined autocomplete="off" style="margin: 5px 20px;    height: 40px;"
        @click:clear="searchInp=false" v-model="searchModel" v-on:input="searchModel != ''? search($event): null;searchInp = true ">
         </v-text-field>
-        <v-card :style="searchModel != '' ? ' width: 100%;height: 100%; max-height:250px;overflow: hidden;' : 'max-height: 0px; height: 0px;'" v-if="searched.tracks && searchInp && searchModel != ''">
+        <v-card :style="searchModel != '' ? ' width: 100%;height: 250px; max-height:250px;overflow: hidden; transition:height 0.3s ease-out;' : 'max-height: 0px; height: 0px;transition:height 0.3s ease-out;'" v-if="searched.tracks && searchInp && searchModel != ''">
           <div style=" width: 100%; overflow-y: scroll; padding-right: 17px; box-sizing: content-box;height: 100%; ">
           <v-card-title>Utwory</v-card-title>
           <v-list v-if="searched.tracks && searchInp && searchModel != ''">
       <v-list-item
-        v-for="item in searched.tracks.items"
-        :key="item.uri"
+        v-for="(item,index) in searched.tracks.items"
+        :key="index"
         @click="playSong(item.uri)"
       >
         <v-list-item-icon>
-          <v-icon  color="primary">mdi-heart-outline</v-icon>
+          <v-icon   color="primary">{{liked[index] == false? 'mdi-heart-outline' : 'mdi-heart'}}</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -87,7 +87,7 @@ export default {
   components: {player},
   computed:{
     ...mapGetters('user',['loggedIn', 'userInfo']),
-    ...mapGetters('spotify', ['saved', 'searched'])
+    ...mapGetters('spotify', ['saved', 'searched', 'liked'])
   },
   methods: {
     ...mapActions('spotify', ['getUserTracks', 'search']),
@@ -97,8 +97,6 @@ export default {
       window.close();
       this.login(true);
     }
-  },
-  created(){
   },
   data() {
     return {

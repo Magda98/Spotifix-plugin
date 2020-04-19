@@ -46,5 +46,11 @@ export default {
                 cb(response.data)
             })
             .catch(e => cb(e.response.data.error))
+    },
+    checkSavedTracks(cb, ids) {
+        ids = ids.join(',');
+        axios.get(`me/tracks/contains?ids=${ids}`).then(response => {
+            cb(response.data)
+        }).catch(e => cb(e.response.data.error))
     }
 };
