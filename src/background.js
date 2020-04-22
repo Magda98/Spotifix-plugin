@@ -52,6 +52,6 @@ browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {}
 browser.runtime.onMessage.addListener((request) => {
     if (request.type == 'player') {
         store.dispatch(request.msg, request.value ? request.value : null);
-
+        console.log(request);
     }
 });

@@ -1,11 +1,10 @@
 <template>
   <v-container
-    light
-    style="flex-direction: column;box-shadow: none; padding:0;"
+    style="flex-direction: column;box-shadow: none; padding:0; background-color: #d1c4e9;height: fit-content; box-shadow: 2px 0px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12); z-index: 100; position: relative;"
   >
    <v-row>
        <v-col cols="12" >
-        <v-card v-if="currentTrack.album"   color="primary">
+        <v-card v-if="currentTrack.album"   color="primaryLight">
         <div class="d-flex flex-no-wrap justify-left">
            <v-avatar v-if="currentTrack.album"
                 class="ma-3"
@@ -27,33 +26,39 @@
        </v-col>
    </v-row>
    <v-row style="margin-bottom:-10px;">
-        <v-col cols="3" style="display:flex;justify-content:center;align-items:center;">
+        <v-col cols="4" style="display:flex;justify-content:center;align-items:center;">
             <v-slider 
-          :prepend-icon='volume != null? "mdi-volume-high" : "mdi-volume-off" '
+            color="secondary"
           min="0"
           step="10"
           v-on:change="setVolume"
           max="100"
           v-model="sliderVol"
-        ></v-slider>
+        >
+                 <template v-slot:prepend id="song">
+            <v-btn v-on:click="volume === null ? updateVolume(100) : updateVolume(0)" height="27" width="27" color="secondary" icon><v-icon>{{volume != null? "mdi-volume-high" : "mdi-volume-off" }}</v-icon></v-btn>
+            </template>
+
+        </v-slider>
             </v-col>
        <v-col   cols="4" id="sp-palyer" style="display:flex;justify-content:center;align-items:center;margin-top:-20px;">
           <v-btn v-on:click="prev"  icon min-height="45" min-width="45" >
-      <v-icon  color="primary">mdi-skip-previous-circle-outline</v-icon>
+      <v-icon  color="secondary">mdi-skip-previous-circle-outline</v-icon>
     </v-btn>
     <v-btn icon min-width="45" min-height="45" v-if="player.paused" v-on:click="resumed()">
-      <v-icon  color="primary" style="font-size: 35px;">mdi-play-circle-outline</v-icon>
+      <v-icon  color="secondary" style="font-size: 35px;">mdi-play-circle-outline</v-icon>
     </v-btn>
 
     <v-btn icon min-width="45" min-height="45" v-if="!player.paused" v-on:click="paused()" >
-      <v-icon  color="primary" style="font-size: 35px;">mdi-pause-circle-outline</v-icon>
+      <v-icon  color="secondary" style="font-size: 35px;">mdi-pause-circle-outline</v-icon>
     </v-btn>
     <v-btn icon min-width="45" min-height="45" v-on:click="next">
-      <v-icon  color="primary" >mdi-skip-next-circle-outline</v-icon>
+      <v-icon  color="secondary" >mdi-skip-next-circle-outline</v-icon>
     </v-btn>
        </v-col>
-        <v-col  cols="5" style="display:flex;justify-content:center;align-items:center;">
+        <v-col  cols="11" style="display:flex;justify-content:center;align-items:center;padding:0px; margin: -10px auto 0 auto;">
     <v-slider 
+    color="secondary"
           min="0"
           step="1000"
           v-on:change="seek"
@@ -129,7 +134,12 @@ export default {
         },
             setVolume(){
              browser.runtime.sendMessage({msg:'player/setVolume', type:'player'});
-          }
+          },
+          updateVolume(value){
+              browser.runtime.sendMessage({msg:'player/updateVolume', type:'player', value: value/100});
+              browser.runtime.sendMessage({msg:'player/setVolume', type:'player'});
+             
+         }
     },
     
 }

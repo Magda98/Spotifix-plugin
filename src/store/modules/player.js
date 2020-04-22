@@ -9,13 +9,13 @@ import Vue from "vue";
 const state = {
         DevId: 1,
         songCurrentSec: 0,
-        maxSongSec: 0,
+        maxSongSec: 240,
         interval: false,
         currentTrack: false,
-        songDuration: 100,
+        songDuration: 240,
         songCurrentMilisec: 0,
         player: {},
-        volume: 0
+        volume: 1
     }
     // getters
 const getters = {

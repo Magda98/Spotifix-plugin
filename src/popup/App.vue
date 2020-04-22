@@ -2,7 +2,7 @@
   <v-app style="max-height:fit-content;" >
     <v-app-bar
       app
-      color="primary"
+      color="primaryDark"
       flat
     >
 
@@ -20,19 +20,19 @@
      </v-list>
      </div>
      <div v-else>
-       <v-btn v-on:click="loginUser()" outlined>
+       <v-btn v-on:click="loginUser()"  color="secondaryDark" class="white--text" >
          zaloguj
        </v-btn>
       </div> 
     </v-app-bar>
-    <v-content style="max-height:fit-content;">
-          <v-text-field clearable  prepend-inner-icon="mdi-magnify" dense outlined autocomplete="off" style="margin: 5px 20px;    height: 40px;"
+    <v-content style="max-height:fit-content; background-color: #F5F5F6;">
+          <v-text-field v-if="loggedIn" clearable color="secondary"  prepend-inner-icon="mdi-magnify" dense outlined autocomplete="off" style="margin: 5px 20px;    height: 40px;"
        @click:clear="searchInp=false" v-model="searchModel" v-on:input="searchModel != ''? search($event): null;searchInp = true ">
         </v-text-field>
-        <v-card :style="searchModel != '' ? ' width: 100%;height: 250px; max-height:250px;overflow: hidden; transition:height 0.3s ease-out;' : 'max-height: 0px; height: 0px;transition:height 0.3s ease-out;'" v-if="searched.tracks && searchInp && searchModel != ''">
+        <v-card flat color="#F5F5F6" :style="searchModel != '' ? ' width: 100%;height: 250px; max-height:250px;overflow: hidden; transition:height 0.3s ease-out;' : 'max-height: 0px; height: 0px;transition:height 0.3s ease-out;'" v-if="searched.tracks && searchInp && searchModel != ''">
           <div style=" width: 100%; overflow-y: scroll; padding-right: 17px; box-sizing: content-box;height: 100%; ">
           <v-card-title>Utwory</v-card-title>
-          <v-list v-if="searched.tracks && searchInp && searchModel != ''">
+          <v-list color="#F5F5F6" v-if="searched.tracks && searchInp && searchModel != ''">
       <v-list-item
         v-for="(item,index) in searched.tracks.items"
         :key="index"
@@ -59,7 +59,7 @@
         cols="3"
         style="margin: 0 auto;"
       >
-      <v-card flat @click="playPlaylist(item.uri)">
+      <v-card height="180px" color="#E1E2E1" flat @click="playPlaylist(item.uri)">
               <v-avatar
                 class="ma-3"
                 size="100"
@@ -67,7 +67,7 @@
               >
                 <v-img :src="item.images[1].url"></v-img>
               </v-avatar>
-          <v-card-title style="font-size: 12px;line-height:12px;" v-text="item.name"></v-card-title>
+          <v-card-title style="font-size: 12px;line-height:12px; padding:6px;" v-text="item.name"></v-card-title>
       </v-card>
       </v-col>
     </v-row>
@@ -114,7 +114,7 @@ body{
   border-radius: 5px;
   margin:0 !important;
   overflow: hidden;
-  height:auto;
+  height: fit-content;
 }
 .v-application--wrap {
       min-height: auto !important;
