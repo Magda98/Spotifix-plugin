@@ -86,6 +86,11 @@ const actions = {
     setVolume({ state }) {
         Vue.prototype.$player.setVolume(state.volume)
     },
+    getVolume({ commit }) {
+        Vue.prototype.$player.getVolume().then(volume => {
+            commit("volume", volume);
+        });
+    },
     shuffle({ state, commit }, data) {
         api.playShuffle(e => {
             commit("shuffle", data);

@@ -57,6 +57,11 @@ const actions = {
             const ids = state.search.tracks.items.map(x => x.id);
             dispatch("checkSavedTracks", ids);
         }, data)
+    },
+    addToQueue({ state }, data) {
+        api.addToQueue(e => {
+            commit("added succefully");
+        }, data)
     }
 }
 

@@ -38,7 +38,22 @@ export async function initialize() {
 
     // Playback status updates
     player.addListener('player_state_changed', statePlayer => {
+        Vue.prototype.$store.commit('player/shuffle', statePlayer.shuffle);
+        let data = 'off';
+        switch (statePlayer.repeat_mode) {
+            case 0:
+                data = 'off';
+                break;
+            case 1:
+                data = 'context';
+                break;
+            case 2:
+                data = 'track';
+                break;
+        }
+        Vue.prototype.$store.commit("player/repeat", data);
         Vue.prototype.$store.commit("player/player", statePlayer);
+        Vue.prototype.$store.dispatch("player/getVolume");
         Vue.prototype.$store.commit("player/saveCurrentTrack", statePlayer.track_window.current_track);
         if (!statePlayer.paused) {
             Vue.prototype.$store.commit("player/playingSong", statePlayer);

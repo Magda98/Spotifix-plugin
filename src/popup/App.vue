@@ -5,7 +5,6 @@
       color="primaryDark"
       flat
     >
-
     <div v-if="loggedIn">
      <v-list style="background-color: transparent;">
        <v-list-item>
@@ -41,12 +40,14 @@
           <v-btn icon v-on:click="liked[index] === false? saveTrack(item.id): deleteTrack(item.id)">
           <v-icon   color="primary">{{liked[index] === false? 'mdi-heart-outline' : 'mdi-heart'}}</v-icon>
           </v-btn>
+            <v-btn color="secondary" icon @click="addToQueue(item.uri)" >
+            <v-icon>mdi-playlist-plus</v-icon>
+          </v-btn>
         </v-list-item-icon>
-        <v-list-item flat @click="playSong(item.uri)">
-        <v-list-item-content  style="max-width: 300px;">
+        <v-list-item flat @click="playSong(item.uri)" style="margin-left: 20px;">
+        <v-list-item-content  style="width: 300px; ">
           <v-list-item-title v-text="item.name"></v-list-item-title>
         </v-list-item-content>
-
         <v-list-item-avatar>
           <v-img :src="item.album.images[1].url"></v-img>
         </v-list-item-avatar>
@@ -92,7 +93,7 @@ export default {
     ...mapGetters('spotify', ['saved', 'searched', 'liked'])
   },
   methods: {
-    ...mapActions('spotify', ['getUserTracks', 'search', 'saveTrack', 'deleteTrack']),
+    ...mapActions('spotify', ['getUserTracks', 'search', 'saveTrack', 'deleteTrack', 'addToQueue']),
     ...mapActions('player', ['playSong', 'playPlaylist']),
     ...mapActions('user', ['login']),
     loginUser(){

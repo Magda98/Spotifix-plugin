@@ -76,5 +76,11 @@ export default {
                 cb(response.data)
             })
             .catch(e => cb(e.response.data.error))
+    },
+    addToQueue(cb, data) {
+        axios.post(`me/player/queue?uri=${data}`).then(response => {
+                cb(response.data)
+            })
+            .catch(e => cb(e.response.data.error))
     }
 };

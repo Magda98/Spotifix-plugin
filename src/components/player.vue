@@ -14,7 +14,7 @@
                 <v-img :src="currentTrack.album.images[0].url"></v-img>
               </v-avatar>
               <div>
-    <v-card-title   style="font-size:16px !important; line-height:12px;"
+    <v-card-title   style="font-size:14px !important; line-height:14px;"
                   class="headline"
                   v-text="currentTrack.name"
                 ></v-card-title>
