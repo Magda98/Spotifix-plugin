@@ -15,7 +15,9 @@ const state = {
         songDuration: 240,
         songCurrentMilisec: 0,
         player: {},
-        volume: 1
+        shuffle: false,
+        volume: 1,
+        repeat: "off",
     }
     // getters
 const getters = {
@@ -25,7 +27,9 @@ const getters = {
     maxSec: state => state.maxSongSec,
     currentTrack: state => state.currentTrack,
     player: state => state.player,
-    volume: state => state.volume
+    volume: state => state.volume,
+    shufflePlay: state => state.shuffle,
+    repeatPlay: state => state.repeat,
 
 }
 
@@ -81,11 +85,27 @@ const actions = {
     },
     setVolume({ state }) {
         Vue.prototype.$player.setVolume(state.volume)
+    },
+    shuffle({ state, commit }, data) {
+        api.playShuffle(e => {
+            commit("shuffle", data);
+        }, data)
+    },
+    repeat({ state, commit }, data) {
+        api.playRepeat(e => {
+            commit("repeat", data);
+        }, data)
     }
 }
 
 // mutations
 const mutations = {
+    repeat(state, data) {
+        state.repeat = data;
+    },
+    shuffle(state, data) {
+        state.shuffle = data;
+    },
     volume(state, data) {
         state.volume = data;
     },

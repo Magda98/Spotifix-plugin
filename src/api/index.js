@@ -52,5 +52,29 @@ export default {
         axios.get(`me/tracks/contains?ids=${ids}`).then(response => {
             cb(response.data)
         }).catch(e => cb(e.response.data.error))
+    },
+    playShuffle(cb, data) {
+        axios.put(`me/player/shuffle?state=${data}`).then(response => {
+            cb(response.data)
+        }).catch(e => cb(e.response.data.error))
+    },
+    playRepeat(cb, data) {
+        axios.put(`me/player/repeat?state=${data}`).then(response => {
+            cb(response.data)
+        }).catch(e => cb(e.response.data.error))
+    },
+    saveTracks(cb, data) {
+        axios.put(`me/tracks`, {
+                ids: [data]
+            }).then(response => {
+                cb(response.data)
+            })
+            .catch(e => cb(e.response.data.error))
+    },
+    deleteTracks(cb, data) {
+        axios.delete(`me/tracks?ids=${data}`).then(response => {
+                cb(response.data)
+            })
+            .catch(e => cb(e.response.data.error))
     }
 };

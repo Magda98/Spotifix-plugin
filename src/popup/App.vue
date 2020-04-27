@@ -36,19 +36,21 @@
       <v-list-item
         v-for="(item,index) in searched.tracks.items"
         :key="index"
-        @click="playSong(item.uri)"
       >
         <v-list-item-icon>
-          <v-icon   color="primary">{{liked[index] == false? 'mdi-heart-outline' : 'mdi-heart'}}</v-icon>
+          <v-btn icon v-on:click="liked[index] === false? saveTrack(item.id): deleteTrack(item.id)">
+          <v-icon   color="primary">{{liked[index] === false? 'mdi-heart-outline' : 'mdi-heart'}}</v-icon>
+          </v-btn>
         </v-list-item-icon>
-
-        <v-list-item-content>
+        <v-list-item flat @click="playSong(item.uri)">
+        <v-list-item-content  style="max-width: 300px;">
           <v-list-item-title v-text="item.name"></v-list-item-title>
         </v-list-item-content>
 
         <v-list-item-avatar>
           <v-img :src="item.album.images[1].url"></v-img>
         </v-list-item-avatar>
+        </v-list-item>
       </v-list-item>
     </v-list>
     <v-card-title>Albumy</v-card-title>
@@ -90,7 +92,7 @@ export default {
     ...mapGetters('spotify', ['saved', 'searched', 'liked'])
   },
   methods: {
-    ...mapActions('spotify', ['getUserTracks', 'search']),
+    ...mapActions('spotify', ['getUserTracks', 'search', 'saveTrack', 'deleteTrack']),
     ...mapActions('player', ['playSong', 'playPlaylist']),
     ...mapActions('user', ['login']),
     loginUser(){

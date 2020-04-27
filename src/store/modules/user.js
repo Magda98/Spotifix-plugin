@@ -42,7 +42,7 @@ const actions = {
             "user-read-recently-played",
             "user-modify-playback-state",
             "streaming",
-            "user-read-birthdate",
+            "user-library-modify",
             "user-library-read",
             "user-top-read"
         );

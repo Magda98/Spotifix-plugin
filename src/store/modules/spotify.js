@@ -45,6 +45,18 @@ const actions = {
         api.checkSavedTracks(result => {
             commit("saveChecked", result);
         }, data)
+    },
+    saveTrack({ commit, state, dispatch }, data) {
+        api.saveTracks(e => {
+            const ids = state.search.tracks.items.map(x => x.id);
+            dispatch("checkSavedTracks", ids);
+        }, data)
+    },
+    deleteTrack({ commit, state, dispatch }, data) {
+        api.deleteTracks(e => {
+            const ids = state.search.tracks.items.map(x => x.id);
+            dispatch("checkSavedTracks", ids);
+        }, data)
     }
 }
 

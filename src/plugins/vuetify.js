@@ -17,6 +17,7 @@ export default new Vuetify({
                 primaryDark: '#a094b7',
                 secondary: '#546e7a',
                 secondaryDark: '#29434e',
+                secondaryLight: '#819ca9',
             },
         },
     },

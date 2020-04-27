@@ -19,14 +19,14 @@
                   v-text="currentTrack.name"
                 ></v-card-title>
 
-                <v-card-subtitle style="font-size:12px;">{{currentTrack.album.name}} <v-icon style="font-size:11px; padding: 0 5px;">mdi-checkbox-blank-circle</v-icon><span v-for="artist in (currentTrack.artists)" :key="artist.id" v-html="' '+ artist.name"></span></v-card-subtitle>
+                <v-card-subtitle style="font-size:12px;">{{currentTrack.album.name}} <v-icon style="font-size:9px; padding: 0 5px;">mdi-checkbox-blank-circle</v-icon><span v-for="artist in (currentTrack.artists)" :key="artist.id" v-html="' '+ artist.name"></span></v-card-subtitle>
               </div>
             </div>
           </v-card>
        </v-col>
    </v-row>
    <v-row style="margin-bottom:-10px;">
-        <v-col cols="4" style="display:flex;justify-content:center;align-items:center;">
+        <v-col cols="4" style="display:flex;justify-content:center;align-items:center;padding-left:22px;">
             <v-slider 
             color="secondary"
           min="0"
@@ -56,6 +56,21 @@
       <v-icon  color="secondary" >mdi-skip-next-circle-outline</v-icon>
     </v-btn>
        </v-col>
+       <v-col cols="4" style="    display: flex;
+    justify-content: space-evenly;">
+          <v-btn icon min-width="30" min-height="30" v-on:click="shuffle(!shufflePlay)" >
+      <v-icon  :color="shufflePlay? 'secondaryDark' : 'secondaryLight'" style="font-size: 25px;">mdi-shuffle-variant</v-icon>
+    </v-btn>
+    <v-btn v-if="repeatPlay === 'off'" icon min-width="30" min-height="30" v-on:click="repeat('context')"  >
+      <v-icon  color="secondaryLight" style="font-size: 25px;">mdi-repeat</v-icon>
+    </v-btn>
+     <v-btn v-else-if="repeatPlay === 'context'" icon min-width="30" min-height="30" v-on:click="repeat('track')"  >
+      <v-icon  color="secondaryDark" style="font-size: 25px;">mdi-repeat</v-icon>
+    </v-btn>
+     <v-btn v-else-if="repeatPlay === 'track'" icon min-width="30" min-height="30" v-on:click="repeat('off')" >
+      <v-icon  color="secondaryDark" style="font-size: 25px;">mdi-repeat-once</v-icon>
+    </v-btn>
+          </v-col>
         <v-col  cols="11" style="display:flex;justify-content:center;align-items:center;padding:0px; margin: -10px auto 0 auto;">
     <v-slider 
     color="secondary"
@@ -92,7 +107,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import browser from "webextension-polyfill"
 export default {
     data(){
@@ -101,7 +116,7 @@ export default {
       }
     },
      computed: {
-        ...mapGetters("player", ["currentSec", "maxSec", "currentTrack", "songCurrentMilisec", "songDuration", "player", "volume"]),
+        ...mapGetters("player", ["currentSec", "maxSec", "currentTrack", "songCurrentMilisec", "songDuration", "player", "volume", "shufflePlay", "repeatPlay"]),
           slider: {
          get() { return this.songCurrentMilisec },
          set(value) { browser.runtime.sendMessage({msg:'player/updateSongTime', type:'player', value: value});},
@@ -113,6 +128,7 @@ export default {
 
     },
     methods:{
+      ...mapActions("player", ["shuffle", "repeat"]),
         next(){
           browser.runtime.sendMessage({msg:'player/next', type:'player'});
         },
