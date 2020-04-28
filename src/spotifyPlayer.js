@@ -38,6 +38,7 @@ export async function initialize() {
 
     // Playback status updates
     player.addListener('player_state_changed', statePlayer => {
+        console.log(statePlayer);
         Vue.prototype.$store.commit('player/shuffle', statePlayer.shuffle);
         let data = 'off';
         switch (statePlayer.repeat_mode) {

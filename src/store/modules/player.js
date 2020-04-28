@@ -92,14 +92,10 @@ const actions = {
         });
     },
     shuffle({ state, commit }, data) {
-        api.playShuffle(e => {
-            commit("shuffle", data);
-        }, data)
+        api.playShuffle(e => {}, data)
     },
     repeat({ state, commit }, data) {
-        api.playRepeat(e => {
-            commit("repeat", data);
-        }, data)
+        api.playRepeat(e => {}, data)
     }
 }
 

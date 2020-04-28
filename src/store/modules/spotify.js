@@ -34,6 +34,7 @@ const actions = {
             if (result.status === 401) {
                 this.dispatch("user/login", false);
             } else {
+                console.log(result);
                 commit("saveSearch", result);
                 const ids = result.tracks.items.map(x => x.id);
                 dispatch("checkSavedTracks", ids);

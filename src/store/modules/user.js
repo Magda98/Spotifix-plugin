@@ -51,7 +51,6 @@ const actions = {
         commit(types.GET_TOKEN, {});
         const url = `${baseUrl}?client_id=${clientId}&scope=${scope}&redirect_uri=${redirectUri}&response_type=${responseType}`;
         browser.identity.launchWebAuthFlow({ url: url, interactive: interactive }).then(response => dispatch("getToken", response)).catch(() => commit("logout"))
-
     },
 
     getToken({ commit, state, dispatch }, url) {

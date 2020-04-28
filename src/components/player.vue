@@ -42,24 +42,24 @@
         </v-slider>
             </v-col>
        <v-col   cols="4" id="sp-palyer" style="display:flex;justify-content:center;align-items:center;margin-top:-20px;">
-          <v-btn v-on:click="prev"  icon min-height="45" min-width="45" >
+          <v-btn v-on:click="prev"  :disabled="player.disallows.skipping_prev" icon min-height="45" min-width="45" >
       <v-icon  color="secondary">mdi-skip-previous-circle-outline</v-icon>
     </v-btn>
-    <v-btn icon min-width="45" min-height="45" v-if="player.paused" v-on:click="resumed()">
+    <v-btn icon min-width="45" min-height="45" v-if="player.paused" :disabled="player.disallows.skipping_resuming" v-on:click="resumed()">
       <v-icon  color="secondary" style="font-size: 35px;">mdi-play-circle-outline</v-icon>
     </v-btn>
 
-    <v-btn icon min-width="45" min-height="45" v-if="!player.paused" v-on:click="paused()" >
+    <v-btn icon min-width="45" min-height="45" v-if="!player.paused" :disabled="player.disallows.skipping_pausing" v-on:click="paused()" >
       <v-icon  color="secondary" style="font-size: 35px;">mdi-pause-circle-outline</v-icon>
     </v-btn>
-    <v-btn icon min-width="45" min-height="45" v-on:click="next">
+    <v-btn icon min-width="45" min-height="45" :disabled="player.disallows.skipping_next" v-on:click="next">
       <v-icon  color="secondary" >mdi-skip-next-circle-outline</v-icon>
     </v-btn>
        </v-col>
        <v-col cols="4" style="    display: flex;
     justify-content: space-evenly;">
           <v-btn icon min-width="30" min-height="30" v-on:click="shuffle(!shufflePlay)" >
-      <v-icon  :color="shufflePlay? 'secondaryDark' : 'secondaryLight'" style="font-size: 25px;">mdi-shuffle-variant</v-icon>
+      <v-icon  :color="shufflePlay? 'secondaryDark' : 'secondaryLight'" style="font-size: 25px;">mdi-shuffle</v-icon>
     </v-btn>
     <v-btn v-if="repeatPlay === 'off'" icon min-width="30" min-height="30" v-on:click="repeat('context')"  >
       <v-icon  color="secondaryLight" style="font-size: 25px;">mdi-repeat</v-icon>

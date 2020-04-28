@@ -74,6 +74,41 @@
       </v-card>
       </v-col>
     </v-row>
+      <v-card-title>Wykonawcy</v-card-title>
+          <v-list color="#F5F5F6" v-if="searched.tracks && searchInp && searchModel != ''">
+      <v-list-item
+        v-for="(item,index) in searched.artists.items"
+        :key="index"
+         @click="playPlaylist(item.uri)"
+      >
+      <v-list-item-avatar>
+          <v-img :src="item.images[1].url"></v-img>
+        </v-list-item-avatar>
+        <v-list-item-content  style="width: 300px; ">
+          <v-list-item-title v-text="item.name"></v-list-item-title>
+        </v-list-item-content>
+        </v-list-item>
+    </v-list>
+     <v-card-title>Playlisty</v-card-title>
+     <v-row style="margin: 0 auto;"  v-if="searched.albums && searchInp && searchModel != ''">
+      <v-col
+        v-for="item in searched.playlists.items"
+        :key="item.uri"
+        cols="3"
+        style="margin: 0 auto;"
+      >
+      <v-card height="180px" color="#E1E2E1" flat @click="playPlaylist(item.uri)">
+              <v-avatar
+                class="ma-3"
+                size="100"
+                tile
+              >
+                <v-img :src="item.images[0].url"></v-img>
+              </v-avatar>
+          <v-card-title style="font-size: 12px;line-height:12px; padding:6px;" v-text="item.name"></v-card-title>
+      </v-card>
+      </v-col>
+    </v-row>
           </div>
     </v-card>
      <player v-if="loggedIn"/> 
