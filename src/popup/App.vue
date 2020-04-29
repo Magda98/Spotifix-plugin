@@ -50,7 +50,7 @@
             ? ' width: 100%;height: 250px; max-height:250px;overflow: hidden; transition:height 0.3s ease-out;'
             : 'max-height: 0px; height: 0px;transition:height 0.3s ease-out;'
         "
-        v-if="searched != undefined && searchInp && searchModel != ''"
+        v-if="searched != undefined && searchInp && searchModel !== null"
       >
         <div
           style="
