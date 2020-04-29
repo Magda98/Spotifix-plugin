@@ -1,0 +1,24 @@
+{
+    "plugins": [
+        "node_modules/jsdoc-vuejs", "jsdoc-vuex-plugin"
+    ],
+    "source": {
+        "include": [
+            "src/",
+            "src/api",
+            "src/components",
+            "src/popup",
+            "src/store",
+            "src/store/modules",
+            "README.md"
+        ],
+        "includePattern": "\\.(vue|js)$",
+        "tags": {
+            "allowUnknownTags": true
+        },
+        "templates": {
+            "cleverLinks": false,
+            "monospaceLinks": false
+        }
+    }
+}

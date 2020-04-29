@@ -1,7 +1,12 @@
-import Vue from 'vue';
-import axios from 'axios';
+import Vue from "vue";
+import axios from "axios";
 
-const waitForSpotifyWebPlaybackSDKToLoad = async() => (
+/**
+ * @module spotifyPlayer
+ * @desc Function to initialize Spotify SDK
+ */
+
+const waitForSpotifyWebPlaybackSDKToLoad = async() =>
     new Promise((resolve) => {
         if (window.Spotify) resolve(window.Spotify);
         else {
@@ -9,57 +14,73 @@ const waitForSpotifyWebPlaybackSDKToLoad = async() => (
                 resolve(window.Spotify);
             };
         }
-    })
-);
+    });
 
 export async function initialize() {
     const Spotify = await waitForSpotifyWebPlaybackSDKToLoad();
     const token = Vue.prototype.$store.state.user.token;
     const player = new Spotify.Player({
-        name: 'Spotifix',
-        getOAuthToken: cb => { cb(token); }
+        name: "Spotifix",
+        getOAuthToken: (cb) => {
+            cb(token);
+        },
     });
-    axios.defaults.headers['Authorization'] = `Bearer ${Vue.prototype.$store.state.user.token}`;
+    axios.defaults.headers[
+        "Authorization"
+    ] = `Bearer ${Vue.prototype.$store.state.user.token}`;
 
     // Error handling
-    player.addListener('initialization_error', ({ message }) => {
+    player.addListener("initialization_error", ({ message }) => {
         console.error(message);
     });
-    player.addListener('authentication_error', ({ message }) => { console.error(message); });
-    player.addListener('account_error', ({ message }) => {
-        Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
+    player.addListener("authentication_error", ({ message }) => {
+        console.error(message);
     });
-    player.addListener('playback_error', ({ message }) => {
+    player.addListener("account_error", ({ message }) => {
+        // Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
+    });
+    player.addListener("playback_error", ({ message }) => {
         if (Vue.prototype.$store.state.player.currentTrack.uri)
-            Vue.prototype.$store.dispatch("player/playSong", Vue.prototype.$store.state.player.currentTrack.uri);
-        else
-            Vue.prototype.$store.dispatch("toastMessage/alert", { message: "No song was loaded", type: "error" });
+            Vue.prototype.$store.dispatch(
+                "player/playSong",
+                Vue.prototype.$store.state.player.currentTrack.uri
+            );
+        // else
+        // Vue.prototype.$store.dispatch("toastMessage/alert", { message: "No song was loaded", type: "error" });
     });
 
     // Playback status updates
-    player.addListener('player_state_changed', statePlayer => {
+    player.addListener("player_state_changed", (statePlayer) => {
         console.log(statePlayer);
-        Vue.prototype.$store.commit('player/shuffle', statePlayer.shuffle);
-        let data = 'off';
+        Vue.prototype.$store.commit("player/shuffle", statePlayer.shuffle);
+        let data = "off";
         switch (statePlayer.repeat_mode) {
             case 0:
-                data = 'off';
+                data = "off";
                 break;
             case 1:
-                data = 'context';
+                data = "context";
                 break;
             case 2:
-                data = 'track';
+                data = "track";
                 break;
         }
         Vue.prototype.$store.commit("player/repeat", data);
         Vue.prototype.$store.commit("player/player", statePlayer);
         Vue.prototype.$store.dispatch("player/getVolume");
-        Vue.prototype.$store.commit("player/saveCurrentTrack", statePlayer.track_window.current_track);
+        Vue.prototype.$store.commit(
+            "player/saveCurrentTrack",
+            statePlayer.track_window.current_track
+        );
         if (!statePlayer.paused) {
             Vue.prototype.$store.commit("player/playingSong", statePlayer);
             if (!Vue.prototype.$store.state.user.interval)
-                Vue.prototype.$store.commit("player/setInt", setInterval(() => { Vue.prototype.$store.commit("player/updateTime") }, 1000));
+                Vue.prototype.$store.commit(
+                    "player/setInt",
+                    setInterval(() => {
+                        Vue.prototype.$store.commit("player/updateTime");
+                    }, 1000)
+                );
         } else {
             Vue.prototype.$store.commit("player/setInt", false);
         }
@@ -67,16 +88,16 @@ export async function initialize() {
 
     // Ready
     const ready = new Promise((resolve) => {
-        player.addListener('ready', ({ device_id }) => {
+        player.addListener("ready", ({ device_id }) => {
             Vue.prototype.$store.commit("player/saveId", device_id);
-            console.log('Ready with Device ID', device_id);
-            Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Player is ready", type: "success" });
+            console.log("Ready with Device ID", device_id);
+            // Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Player is ready", type: "success" });
             Vue.prototype.$store.commit("player/setInt", false);
             resolve(player);
         });
     });
     // Not Ready
-    player.addListener('not_ready', ({ device_id }) => {
+    player.addListener("not_ready", ({ device_id }) => {
         // console.log('Device ID has gone offline', device_id);
     });
 

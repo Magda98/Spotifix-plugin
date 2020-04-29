@@ -1,3 +1,7 @@
+/**
+ * @module store/mutation-types
+ * @desc Mutation-types for some mutation in store
+ */
 export const LOGIN_USER = 'LOGIN_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
 

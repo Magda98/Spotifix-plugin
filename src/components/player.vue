@@ -109,6 +109,31 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import browser from "webextension-polyfill"
+/**
+   * @module components/player
+   * @desc Player component
+   * @vue-data {Bolean} [play = false] - If player is currently playing
+   * @vue-computed {Number} player/currentSec - Current second of song
+   * @vue-computed {Number} player/maxSec - Max song time
+   * @vue-computed {Object} player/currentTrack - Infomation about current track
+   * @vue-computed {Number} player/songCurrentMilisec - Current mili seconds of song
+   * @vue-computed {Number} player/songDuration - Max song time in mili seconds
+   * @vue-computed {Object} player/player - Basics player information
+   * @vue-computed {Float} player/volume - Volume of player
+   * @vue-computed {String} player/shufflePlay - Shuffle play mode infromation
+   * @vue-computed {String} player/reperatPlay - Repeat play mode infromation
+   * @vue-computed {Object} slider - Slider for song time
+   * @vue-computed {Object} sliderVol - Slider for volume  
+   * @vue-event {String} player/shuffle - Change shuffle mode
+   * @vue-event {String} player/repeat - Change repeat mode
+   * @vue-event {} next - send message to background script to call function for Spotify Player
+   * @vue-event {} prev - send message to background script to call function for Spotify Player
+   * @vue-event {} seek - send message to background script to call function for Spotify Player
+   * @vue-event {} resumed - send message to background script to call function for Spotify Player
+   * @vue-event {} paused - send message to background script to call function for Spotify Player
+   * @vue-event {} setVolume - send message to background script to call function for Spotify Player
+   * @vue-event {} updateVolume - send message to background script to call function for Spotify Player
+   */
 export default {
     data(){
       return{

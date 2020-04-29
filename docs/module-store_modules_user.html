@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: store/modules/user</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: store/modules/user</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Store for Spotify functions - login user, get user info</div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~Actions-callthespecificApifunctions"><span class="type-signature">(inner) </span>Actions - call the specific Api functions<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    login - Login a user <br/>getToken - Get token from url <br/> getUserInfo - Get user Information <br/>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~Getters"><span class="type-signature">(inner) </span>Getters<span class="type-signature"> :object</span></h4>
+
+
+
+
+<div class="description">
+    <table class="params">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Returns Type</th>
+                
+                <th>Returns State Property</th>
+                <th class="last">Description</th>
+                </tr>
+            </thead>
+            <tr>
+            <td class="name"><code>getToken</code></td>
+            <td class="type">Bolean</td>
+            
+            <td class="default"><code>getToken</code></td>
+            <td class="description last">Returns a property that is a Bolean</td>
+            </tr><tr>
+            <td class="name"><code>userInfo</code></td>
+            <td class="type">Object</td>
+            
+            <td class="default"><code>userInfo</code></td>
+            <td class="description last">Returns a property that is a Object</td>
+            </tr><tr>
+            <td class="name"><code>userProfile</code></td>
+            <td class="type">String</td>
+            
+            <td class="default"><code>userInfo</code></td>
+            <td class="description last">Returns a property that is a String</td>
+            </tr><tr>
+            <td class="name"><code>loggedIn</code></td>
+            <td class="type">Bolean</td>
+            
+            <td class="default"><code>logged_in</code></td>
+            <td class="description last">Returns a property that is a Bolean</td>
+            </tr>
+            </table>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line30">line 30</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~Mutations"><span class="type-signature">(inner) </span>Mutations<span class="type-signature"> :object</span></h4>
+
+
+
+
+<div class="description">
+    <table class="params">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Accepts Type</th>
+                
+                <th>Mutates State Property</th>
+                <th class="last">Description</th>
+                </tr>
+            </thead>
+            <tr>
+            <td class="name"><code>saveUserInfo</code></td>
+            <td class="type">Object</td>
+            
+            <td class="default"><code>userInfo</code></td>
+            <td class="description last">Sets the state Object property</td>
+            </tr><tr>
+            <td class="name"><code>LOGIN_USER</code></td>
+            <td class="type">Bolean</td>
+            
+            <td class="default"><code>logged_in</code></td>
+            <td class="description last">Sets the state Bolean property</td>
+            </tr><tr>
+            <td class="name"><code>LOGOUT_USER</code></td>
+            <td class="type">Bolean</td>
+            
+            <td class="default"><code>logged_in</code></td>
+            <td class="description last">Sets the state Bolean property</td>
+            </tr><tr>
+            <td class="name"><code>GET_TOKEN</code></td>
+            <td class="type">Bolean</td>
+            
+            <td class="default"><code>getToken</code></td>
+            <td class="description last">Sets the state Bolean property</td>
+            </tr><tr>
+            <td class="name"><code>SAVE_TOKEN</code></td>
+            <td class="type">String</td>
+            
+            <td class="default"><code>token</code></td>
+            <td class="description last">Sets the state String property</td>
+            </tr>
+            </table>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line101">line 101</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~State"><span class="type-signature">(inner) </span>State<span class="type-signature"> :object</span></h4>
+
+
+
+
+<div class="description">
+    The Vuex 'state' object.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>logged_in</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Bolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">True If user is loged in</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>getToken</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Bolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">True if token is saved</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">user Token</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userInfo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">User information</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Api.html">Api</a></li><li><a href="module-background.html">background</a></li><li><a href="module-components_player.html">components/player</a></li><li><a href="module-popup_App.html">popup/App</a></li><li><a href="module-popup_main.html">popup/main</a></li><li><a href="module-spotify.html">spotify</a></li><li><a href="module-spotifyPlayer.html">spotifyPlayer</a></li><li><a href="module-store_modules_player.html">store/modules/player</a></li><li><a href="module-store_modules_spotify.html">store/modules/spotify</a></li><li><a href="module-store_modules_user.html">store/modules/user</a></li><li><a href="module-store_mutation-types.html">store/mutation-types</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Apr 29 2020 19:10:37 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

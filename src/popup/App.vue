@@ -120,6 +120,27 @@
 <script>
 import player from "../components/player"
 import {mapActions, mapGetters} from 'vuex'
+
+ /**
+   * @module popup/App
+   * @desc Main vue application file for popup
+   * @vue-data {Bolean} [searchInp = false] - Check if user is typing something
+   * @vue-data {String} [searchModel = ''] - Get data from search input
+   * @vue-computed {Bolean} user/loggedIn - True if user token is valid
+   * @vue-computed {Object} user/userInfo - Get the user information - photo, email, name from store
+   * @vue-computed {Object} spotify/saved - User saved tracks
+   * @vue-computed {Object} spotify/searched - Object with searched items based on text from input
+   * @vue-computed {Array.<Bolean>} spotify/liked - Array of bolean which song is in user saved tracks 
+   * @vue-event {} spotify/getUserTracks - Get saved tracks for user
+   * @vue-event {String} spotify/search - Get searched items based on typed text
+   * @vue-event {String} spotify/saveTrack - Add track to liked songs
+   * @vue-event {String} spotify/deleteTrack - Remove track from liked songs
+   * @vue-event {String} spotify/addToQueue - Addtrack to queue in player
+   * @vue-event {String} player/playSong - Playing clicked song
+   * @vue-event {String} spotify/playPlaylist - Playing clicked album/playlist/artist
+   * @vue-event {} user/login - Login user to Spotify
+   * @vue-event {} loginUser - Close popup window then call a function from store user/login
+   */
 export default {
   name: 'App',
   components: {player},

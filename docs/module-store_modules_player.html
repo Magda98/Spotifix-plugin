@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: store/modules/player</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: store/modules/player</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Store for Spotify Player functions and states</div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_player.js.html">store/modules/player.js</a>, <a href="store_modules_player.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~Actions"><span class="type-signature">(inner) </span>Actions<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    playPlaylist - Play album/playlist/artist, <br/>updateSec - Sets interval for song time, <br/>updateSongTime - Updates song time, <br/>updateVolume - Update player volume, <br/>pause/resume/prev/next/seek/setVolume - Player function, <br/>getVolume - Get volume of player, <br/>shuffle - Set shuffle mode, <br/>repeat - Set repeat mode, <br/>playSong - Play song of given uri <br/>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_player.js.html">store/modules/player.js</a>, <a href="store_modules_player.js.html#line70">line 70</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~Getters"><span class="type-signature">(inner) </span>Getters<span class="type-signature"> :object</span></h4>
+
+
+
+
+<div class="description">
+    <table class="params">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Returns Type</th>
+                
+                <th>Returns State Property</th>
+                <th class="last">Description</th>
+                </tr>
+            </thead>
+            <tr>
+            <td class="name"><code>songDuration</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>songDuration</code></td>
+            <td class="description last">Returns a property that is a number</td>
+            </tr><tr>
+            <td class="name"><code>songCurrentMilisec</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>songCurrentMilisec</code></td>
+            <td class="description last">Returns a property that is a number</td>
+            </tr><tr>
+            <td class="name"><code>currentSec</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>songCurrentSec</code></td>
+            <td class="description last">Returns a property that is a number</td>
+            </tr><tr>
+            <td class="name"><code>maxSec</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>maxSongSec</code></td>
+            <td class="description last">Returns a property that is a number</td>
+            </tr><tr>
+            <td class="name"><code>currentTrack</code></td>
+            <td class="type">Object</td>
+            
+            <td class="default"><code>currentTrack</code></td>
+            <td class="description last">Returns a Object property</td>
+            </tr><tr>
+            <td class="name"><code>player</code></td>
+            <td class="type">Object</td>
+            
+            <td class="default"><code>player</code></td>
+            <td class="description last">Returns a Object property</td>
+            </tr><tr>
+            <td class="name"><code>volume</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>volume</code></td>
+            <td class="description last">Returns a property that is a number</td>
+            </tr><tr>
+            <td class="name"><code>shufflePlay</code></td>
+            <td class="type">Bolean</td>
+            
+            <td class="default"><code>shuffle</code></td>
+            <td class="description last">Returns a boolean property</td>
+            </tr><tr>
+            <td class="name"><code>repeatPlay</code></td>
+            <td class="type">String</td>
+            
+            <td class="default"><code>repeat</code></td>
+            <td class="description last">Returns a string property</td>
+            </tr>
+            </table>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_player.js.html">store/modules/player.js</a>, <a href="store_modules_player.js.html#line43">line 43</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~Mutations"><span class="type-signature">(inner) </span>Mutations<span class="type-signature"> :object</span></h4>
+
+
+
+
+<div class="description">
+    <table class="params">
+            <thead>
+                <tr>
+                <th>Name</th>
+                <th>Accepts Type</th>
+                
+                <th>Mutates State Property</th>
+                <th class="last">Description</th>
+                </tr>
+            </thead>
+            <tr>
+            <td class="name"><code>repeat</code></td>
+            <td class="type">String</td>
+            
+            <td class="default"><code>repeat</code></td>
+            <td class="description last">Sets the state String property</td>
+            </tr><tr>
+            <td class="name"><code>shuffle</code></td>
+            <td class="type">Bolean</td>
+            
+            <td class="default"><code>shuffle</code></td>
+            <td class="description last">Sets the state Bolean property</td>
+            </tr><tr>
+            <td class="name"><code>volume</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>volume</code></td>
+            <td class="description last">Sets the state numerical property</td>
+            </tr><tr>
+            <td class="name"><code>player</code></td>
+            <td class="type">Object</td>
+            
+            <td class="default"><code>player</code></td>
+            <td class="description last">Sets the state Object property</td>
+            </tr><tr>
+            <td class="name"><code>seekTime</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>songCurrentMilisec,songCurrentSec</code></td>
+            <td class="description last">Sets the state numerical property</td>
+            </tr><tr>
+            <td class="name"><code>saveCurrentTrack</code></td>
+            <td class="type">Object</td>
+            
+            <td class="default"><code>currentTrack</code></td>
+            <td class="description last">Sets the state Object property</td>
+            </tr><tr>
+            <td class="name"><code>setInt</code></td>
+            <td class="type">function</td>
+            
+            <td class="default"><code>interval</code></td>
+            <td class="description last">Sets the state Function property</td>
+            </tr><tr>
+            <td class="name"><code>clearInt</code></td>
+            <td class="type">function</td>
+            
+            <td class="default"><code>interval</code></td>
+            <td class="description last">Sets the state Function property</td>
+            </tr><tr>
+            <td class="name"><code>updateTime</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>songCurrentMilisec,songCurrentSec</code></td>
+            <td class="description last">Sets the state Number property</td>
+            </tr><tr>
+            <td class="name"><code>saveId</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>DevId</code></td>
+            <td class="description last">Sets the state Number property</td>
+            </tr><tr>
+            <td class="name"><code>playingSong</code></td>
+            <td class="type">Number</td>
+            
+            <td class="default"><code>maxSongSec,songCurrentSec,songDuration,songCurrentMilisec</code></td>
+            <td class="description last">Sets the state Number property</td>
+            </tr>
+            </table>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_player.js.html">store/modules/player.js</a>, <a href="store_modules_player.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~State"><span class="type-signature">(inner) </span>State<span class="type-signature"> :object</span></h4>
+
+
+
+
+<div class="description">
+    The Vuex 'state' object.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>DevId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">Player Device ID</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>songCurrentSec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">Current song second</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>maxSongSec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    240
+                
+                </td>
+            
+
+            <td class="description last">Duration of song</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>interval</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Interval for song sec update,</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>currentTrack</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">undefined</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Current track data,</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>songDuration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    240
+                
+                </td>
+            
+
+            <td class="description last">Duration of song</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>songCurrentMilisec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">Current song time in miliseconds</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+
+            <td class="description last">Spotify Player object state</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>shuffle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Bolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">Shuffle mode</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>volume</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    1
+                
+                </td>
+            
+
+            <td class="description last">Player volume</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>repeat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    "off"
+                
+                </td>
+            
+
+            <td class="description last">Player repeat mode</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="store_modules_player.js.html">store/modules/player.js</a>, <a href="store_modules_player.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Api.html">Api</a></li><li><a href="module-background.html">background</a></li><li><a href="module-components_player.html">components/player</a></li><li><a href="module-popup_App.html">popup/App</a></li><li><a href="module-popup_main.html">popup/main</a></li><li><a href="module-spotify.html">spotify</a></li><li><a href="module-spotifyPlayer.html">spotifyPlayer</a></li><li><a href="module-store_modules_player.html">store/modules/player</a></li><li><a href="module-store_modules_spotify.html">store/modules/spotify</a></li><li><a href="module-store_modules_user.html">store/modules/user</a></li><li><a href="module-store_mutation-types.html">store/mutation-types</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Apr 29 2020 19:10:37 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
