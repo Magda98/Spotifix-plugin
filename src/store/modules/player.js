@@ -147,10 +147,10 @@ const actions = {
       commit("volume", volume);
     });
   },
-  shuffle(data) {
+  shuffle({ state }, data) {
     api.playShuffle(() => {}, data);
   },
-  repeat(data) {
+  repeat({ state }, data) {
     api.playRepeat(() => {}, data);
   },
 };
