@@ -15,7 +15,10 @@
   >
     <v-row>
       <v-col cols="12">
-        <v-card v-if="currentTrack && currentTrack.album" color="primaryLight">
+        <v-card
+          v-if="currentTrack != undefined && currentTrack.album"
+          color="primaryLight"
+        >
           <div class="d-flex flex-no-wrap justify-left">
             <v-avatar
               v-if="currentTrack.album.images"

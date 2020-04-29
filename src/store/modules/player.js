@@ -125,10 +125,10 @@ const actions = {
     commit("volume", data);
   },
   pause() {
-    Vue.prototype.$player.pause();
+    Vue.prototype.$player.togglePlay();
   },
   resume() {
-    Vue.prototype.$player.resume();
+    Vue.prototype.$player.togglePlay();
   },
   prev() {
     Vue.prototype.$player.previousTrack();
