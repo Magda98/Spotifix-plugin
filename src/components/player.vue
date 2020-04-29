@@ -80,7 +80,7 @@
         </v-slider>
       </v-col>
       <v-col
-        v-if="player"
+        v-if="player.disallows"
         cols="4"
         id="sp-palyer"
         style="
