@@ -119,12 +119,12 @@
                 @click="playPlaylist(item.uri)"
               >
                 <v-avatar
-                  v-if="item.images.lenght > 0"
+                  v-if="item.images.length > 0"
                   class="ma-3"
                   size="100"
                   tile
                 >
-                  <v-img :src="item.images[1].url"></v-img>
+                  <v-img :src="item.images[0].url"></v-img>
                 </v-avatar>
                 <v-card-title
                   style="font-size: 12px; line-height: 12px; padding: 6px;"
@@ -143,8 +143,8 @@
               :key="index"
               @click="playPlaylist(item.uri)"
             >
-              <v-list-item-avatar v-if="item.images.lenght > 0">
-                <v-img :src="item.images[1].url"></v-img>
+              <v-list-item-avatar v-if="item.images.length > 0">
+                <v-img :src="item.images[0].url"></v-img>
               </v-list-item-avatar>
               <v-list-item-content style="width: 300px;">
                 <v-list-item-title v-text="item.name"></v-list-item-title>
