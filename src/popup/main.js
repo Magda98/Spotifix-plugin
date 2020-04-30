@@ -63,7 +63,7 @@ new Vue({
         axios.defaults.headers["Authorization"] = `Bearer ${state.user.token}`;
       }
     });
-    if (this.$store.state.user.token) {
+    if (this.$store.state.user.logged_in) {
       axios.defaults.headers[
         "Authorization"
       ] = `Bearer ${this.$store.state.user.token}`;
