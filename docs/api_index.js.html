@@ -30,129 +30,158 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "https://api.spotify.com/v1/";
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post["Content-Type"] = "application/json";
 
 /**
  * @module Api
- * @desc Send request to Spotify API 
+ * @desc Send request to Spotify API
  */
 
 export default {
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     */
-    getUserInfo(cb) {
-        axios.get("me").then(response => {
-            cb(response.data);
-        }).catch(e => {
-            cb(e.response.data.error);
-        })
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {Object} data - Pass device ID and song uri
-     */
-    playSong(cb, data) {
-        axios.put(`me/player/play?device_id=${data.id}`, {
-            uris: [data.track]
-        }).then(response => {
-            cb(response.data)
-        }).catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {Object} data - Pass device ID and album/artists/playlists uri
-     */
-    playPlaylist(cb, data) {
-        axios.put(`me/player/play?device_id=${data.id}`, {
-            context_uri: data.uri
-        }).then(response => {
-            cb(response.data)
-        }).catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     */
-    getSavedTracks(cb) {
-        axios.get(`me/tracks`, {
-                limit: 50
-            }).then(response => {
-                cb(response.data)
-            })
-            .catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {String} data - Text from search input
-     */
-    search(cb, data) {
-        data = encodeURIComponent(data.trim())
-        axios.get(`search?q=${data}&amp;type=album,track,artist,playlist&amp;limit=6`).then(response => {
-                cb(response.data)
-            })
-            .catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {Array} ids - Array of current searched songs ID's
-     */
-    checkSavedTracks(cb, ids) {
-        ids = ids.join(',');
-        axios.get(`me/tracks/contains?ids=${ids}`).then(response => {
-            cb(response.data)
-        }).catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {String} data - Shuffle mode
-     */
-    playShuffle(cb, data) {
-        axios.put(`me/player/shuffle?state=${data}`).then(response => {
-            cb(response.data)
-        }).catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {String} data - Repeat mode
-     */
-    playRepeat(cb, data) {
-        axios.put(`me/player/repeat?state=${data}`).then(response => {
-            cb(response.data)
-        }).catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {String} data - ID of song to save to liked songs
-     */
-    saveTracks(cb, data) {
-        axios.put(`me/tracks`, {
-                ids: [data]
-            }).then(response => {
-                cb(response.data)
-            })
-            .catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {String} data - ID of song to remove from liked songs
-     */
-    deleteTracks(cb, data) {
-        axios.delete(`me/tracks?ids=${data}`).then(response => {
-                cb(response.data)
-            })
-            .catch(e => cb(e.response.data.error))
-    },
-    /**
-     * @param {Function} cb - CallBack Function to get server response
-     * @param {String} data - uri of song to add to player queue
-     */
-    addToQueue(cb, data) {
-        axios.post(`me/player/queue?uri=${data}`).then(response => {
-                cb(response.data)
-            })
-            .catch(e => cb(e.response.data.error))
-    }
-};</code></pre>
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   */
+  getUserInfo(cb) {
+    axios
+      .get("me")
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => {
+        cb(e.response.data.error);
+      });
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {Object} data - Pass device ID and song uri
+   */
+  playSong(cb, data) {
+    axios
+      .put(`me/player/play?device_id=${data.id}`, {
+        uris: [data.track],
+      })
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {Object} data - Pass device ID and album/artists/playlists uri
+   */
+  playPlaylist(cb, data) {
+    axios
+      .put(`me/player/play?device_id=${data.id}`, {
+        context_uri: data.uri,
+      })
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   */
+  getSavedTracks(cb) {
+    axios
+      .get(`me/tracks`, {
+        limit: 50,
+      })
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {String} data - Text from search input
+   */
+  search(cb, data) {
+    if (data !== null) data = encodeURIComponent(data.trim());
+    axios
+      .get(`search?q=${data}&amp;type=album,track,artist,playlist&amp;limit=6`)
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {Array} ids - Array of current searched songs ID's
+   */
+  checkSavedTracks(cb, ids) {
+    ids = ids.join(",");
+    axios
+      .get(`me/tracks/contains?ids=${ids}`)
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {String} data - Shuffle mode
+   */
+  playShuffle(cb, data) {
+    axios
+      .put(`me/player/shuffle?state=${data}`)
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {String} data - Repeat mode
+   */
+  playRepeat(cb, data) {
+    axios
+      .put(`me/player/repeat?state=${data}`)
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {String} data - ID of song to save to liked songs
+   */
+  saveTracks(cb, data) {
+    axios
+      .put(`me/tracks`, {
+        ids: [data],
+      })
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {String} data - ID of song to remove from liked songs
+   */
+  deleteTracks(cb, data) {
+    axios
+      .delete(`me/tracks?ids=${data}`)
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+  /**
+   * @param {Function} cb - CallBack Function to get server response
+   * @param {String} data - uri of song to add to player queue
+   */
+  addToQueue(cb, data) {
+    axios
+      .post(`me/player/queue?uri=${data}`)
+      .then((response) => {
+        cb(response.data);
+      })
+      .catch((e) => cb(e.response.data.error));
+  },
+};
+</code></pre>
         </article>
     </section>
 
@@ -162,13 +191,13 @@ export default {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Api.html">Api</a></li><li><a href="module-background.html">background</a></li><li><a href="module-components_player.html">components/player</a></li><li><a href="module-popup_App.html">popup/App</a></li><li><a href="module-popup_main.html">popup/main</a></li><li><a href="module-spotify.html">spotify</a></li><li><a href="module-spotifyPlayer.html">spotifyPlayer</a></li><li><a href="module-store_modules_player.html">store/modules/player</a></li><li><a href="module-store_modules_spotify.html">store/modules/spotify</a></li><li><a href="module-store_modules_user.html">store/modules/user</a></li><li><a href="module-store_mutation-types.html">store/mutation-types</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Api.html">Api</a></li><li><a href="module-background.html">background</a></li><li><a href="module-components_albums.html">components/albums</a></li><li><a href="module-components_artists.html">components/artists</a></li><li><a href="module-components_player.html">components/player</a></li><li><a href="module-components_tracks.html">components/tracks</a></li><li><a href="module-components_userInfo.html">components/userInfo</a></li><li><a href="module-popup_App.html">popup/App</a></li><li><a href="module-popup_main.html">popup/main</a></li><li><a href="module-spotify.html">spotify</a></li><li><a href="module-spotifyPlayer.html">spotifyPlayer</a></li><li><a href="module-store_modules_player.html">store/modules/player</a></li><li><a href="module-store_modules_spotify.html">store/modules/spotify</a></li><li><a href="module-store_modules_user.html">store/modules/user</a></li><li><a href="module-store_mutation-types.html">store/mutation-types</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Apr 29 2020 19:10:37 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Apr 30 2020 09:47:53 GMT+0200 (Central European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>
