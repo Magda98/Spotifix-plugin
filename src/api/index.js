@@ -146,7 +146,7 @@ export default {
    */
   addToQueue(cb, data) {
     axios
-      .post(`me/player/queue?uri=${data}`)
+      .post(`me/player/queue?uri=${data.uri}&device_id=${data.id}`)
       .then((response) => {
         cb(response.data);
       })

@@ -7,6 +7,7 @@ import user from "@/store/modules/user";
 import player from "@/store/modules/player";
 import spotify from "@/store/modules/spotify";
 import VuexPersistence from "vuex-persist";
+import toastMessage from "@/store/modules/toastMessage";
 import axios from "axios";
 
 Vue.use(Vuex);
@@ -32,6 +33,7 @@ const store = new Vuex.Store({
     user,
     player,
     spotify,
+    toastMessage,
   },
   mutations: {
     RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION, // this mutation **MUST** be named "RESTORE_MUTATION"

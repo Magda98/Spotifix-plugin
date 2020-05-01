@@ -39,26 +39,28 @@ export async function initialize() {
     console.error(message);
   });
   player.addListener("account_error", ({ message }) => {
-    // eslint-disable-next-line no-console
-    console.error(message);
-    // Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
+    // console.error(message);
+    Vue.prototype.$store.dispatch("toastMessage/alert", {
+      message: "Sorry, You have no premium account. 😔",
+      type: "warning",
+    });
   });
   player.addListener("playback_error", ({ message }) => {
-    // eslint-disable-next-line no-console
-    console.error(message);
+    // console.error(message);
     if (Vue.prototype.$store.state.player.currentTrack.uri)
       Vue.prototype.$store.dispatch(
         "player/playSong",
         Vue.prototype.$store.state.player.currentTrack.uri
       );
-    // else
-    // Vue.prototype.$store.dispatch("toastMessage/alert", { message: "No song was loaded", type: "error" });
+    else
+      Vue.prototype.$store.dispatch("toastMessage/alert", {
+        message: "No song was loaded",
+        type: "error",
+      });
   });
 
   // Playback status updates
   player.addListener("player_state_changed", (statePlayer) => {
-    // eslint-disable-next-line no-console
-    console.log(statePlayer);
     Vue.prototype.$store.commit("player/shuffle", statePlayer.shuffle);
     let data = "off";
     switch (statePlayer.repeat_mode) {
@@ -98,7 +100,11 @@ export async function initialize() {
     player.addListener("ready", ({ device_id }) => {
       Vue.prototype.$store.commit("player/saveId", device_id);
       // console.log("Ready with Device ID", device_id);
-      // Vue.prototype.$store.dispatch("toastMessage/alert", { message: "Player is ready", type: "success" });
+      Vue.prototype.$store.dispatch("toastMessage/alert", {
+        message: "Player is ready",
+        type: "success",
+      });
+      if (!Vue.prototype.$store.state.player.player.paused) player.resume();
       Vue.prototype.$store.commit("player/setInt", false);
       resolve(player);
     });

@@ -1,4 +1,5 @@
 import api from "@/api";
+import Vue from "vue";
 import * as types from "../mutation-types";
 import querystring from "query-string";
 import axios from "axios";
@@ -86,7 +87,15 @@ const actions = {
     }, data);
   },
   addToQueue({ state }, data) {
-    api.addToQueue((e) => {}, data);
+    api.addToQueue(
+      (e) => {
+        this.dispatch("toastMessage/alert", {
+          message: "Added to queue",
+          type: "success",
+        });
+      },
+      { uri: data, id: this.state.player.DevId }
+    );
   },
 };
 

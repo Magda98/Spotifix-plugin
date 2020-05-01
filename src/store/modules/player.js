@@ -98,10 +98,16 @@ const actions = {
     api.playPlaylist(
       (song) => {
         if (song.status === 401) this.dispatch("user/login", false);
-        // else if (song.status === 403)
-        //     this.dispatch("toastMessage/alert", { message: "Sorry, You have no premium account. 😔", type: "warning" });
-        // else if (song.status === 404)
-        //     this.dispatch("toastMessage/alert", { message: "Sorry, player is not ready yet.", type: "error" });
+        else if (song.status === 403)
+          this.dispatch("toastMessage/alert", {
+            message: "Sorry, You have no premium account. 😔",
+            type: "warning",
+          });
+        else if (song.status === 404)
+          this.dispatch("toastMessage/alert", {
+            message: "Sorry, player is not ready yet.",
+            type: "error",
+          });
       },
       { uri: uri, id: state.DevId }
     );

@@ -29,7 +29,7 @@
         @click:clear="searchInp = false"
         v-model="searchModel"
         v-on:input="
-          searchModel != '' ? search($event) : null;
+          searchModel !== ('' || null) ? search($event) : null;
           searchInp = true;
         "
       >
@@ -82,6 +82,33 @@
         </div>
       </v-card>
       <player />
+      <v-snackbar
+        class="sp-snackbar"
+        @input="hideAlert"
+        :value="showAlert"
+        :timeout="timeout"
+        style="width: 50%; margin: auto;"
+      >
+        <div
+          style="display: flex; align-items: center; margin: auto;"
+          v-bind:class="[alertType + '--text']"
+        >
+          <v-icon
+            style="margin-right: 20px;"
+            color="white"
+            v-bind:class="[alertType + '--text']"
+            >{{ alertIcon }}</v-icon
+          >
+          {{ message }}
+        </div>
+        <v-btn
+          style="margin-top: 0px;, font-size: 12px;"
+          icon
+          text
+          @click="hideAlert"
+          ><v-icon color="white">mdi-close</v-icon></v-btn
+        >
+      </v-snackbar>
     </v-content>
   </v-app>
 </template>
@@ -115,10 +142,18 @@ export default {
   computed: {
     ...mapGetters("user", ["loggedIn", "userInfo"]),
     ...mapGetters("spotify", ["saved", "searched", "liked"]),
+    ...mapGetters("toastMessage", [
+      "timeout",
+      "alertType",
+      "alertIcon",
+      "message",
+      "showAlert",
+    ]),
   },
   methods: {
     ...mapActions("spotify", ["getUserTracks", "search"]),
     ...mapActions("user", ["login"]),
+    ...mapActions("toastMessage", ["hideAlert"]),
     loginUser() {
       window.close();
       this.login(true);
@@ -140,6 +175,7 @@ body {
   margin: 0 !important;
   overflow: hidden;
   height: fit-content;
+  min-height: 55px;
 }
 .v-application--wrap {
   min-height: auto !important;
