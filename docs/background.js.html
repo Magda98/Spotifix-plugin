@@ -26,74 +26,77 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Vue from 'vue';
-import Vuex from 'vuex';
-import VuexWebExtensions from 'vuex-webextensions';
-import user from '@/store/modules/user'
-import player from '@/store/modules/player'
-import spotify from '@/store/modules/spotify'
-import VuexPersistence from 'vuex-persist'
-import browser from "webextension-polyfill"
-import axios from "axios";
-import { initialize } from '@/spotifyPlayer'
+            <pre class="prettyprint source linenums"><code>import Vue from "vue";
+import Vuex from "vuex";
+import VuexWebExtensions from "vuex-webextensions";
+import user from "@/store/modules/user";
+import player from "@/store/modules/player";
+import spotify from "@/store/modules/spotify";
+import VuexPersistence from "vuex-persist";
+import browser from "webextension-polyfill";
+import { initialize } from "@/spotifyPlayer";
+import toastMessage from "@/store/modules/toastMessage";
 
 /**
  * @module background
  * @desc Background script where player is initialized
  */
 
-
 window.onSpotifyWebPlaybackSDKReady = () => {};
-Vue.use(Vuex)
-const debug = process.env.NODE_ENV !== 'production'
+Vue.use(Vuex);
+const debug = process.env.NODE_ENV !== "production";
 
 /**
- * @param {} vuexLocal  
+ * @param {} vuexLocal
  * @desc cerate VuexPersistance to map store to localStorage
  */
 const vuexLocal = new VuexPersistence({
-    storage: window.localStorage,
-    key: 'spotifix-plugin',
-    strictMode: true
-})
-
+  storage: window.localStorage,
+  key: "spotifix-plugin",
+  strictMode: true,
+});
 
 /**
- * @param {} store 
+ * @param {} store
  * @desc cerate Vuex store instance
  */
 const store = new Vuex.Store({
-    modules: {
-        user,
-        player,
-        spotify
-    },
-    mutations: {
-        RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION // this mutation **MUST** be named "RESTORE_MUTATION"
-    },
-    strict: true,
-    plugins: [vuexLocal.plugin, VuexWebExtensions({
-        syncActions: false,
-    })]
-})
+  modules: {
+    user,
+    player,
+    spotify,
+    toastMessage,
+  },
+  mutations: {
+    RESTORE_MUTATION: vuexLocal.RESTORE_MUTATION, // this mutation **MUST** be named "RESTORE_MUTATION"
+  },
+  strict: true,
+  plugins: [
+    vuexLocal.plugin,
+    VuexWebExtensions({
+      syncActions: false,
+    }),
+  ],
+});
 
 Vue.prototype.$store = store;
 store.dispatch("user/login", false);
 store.subscribe((mutation, state) => {
-    if (mutation.type === 'user/SAVE_TOKEN') {
-        initialize()
-    }
-})
-initialize()
+  if (mutation.type === "user/SAVE_TOKEN") {
+    initialize();
+  }
+});
+initialize();
 
 /**
  * @desc Catch messages from popup and call function from store by dispatch
  */
 browser.runtime.onMessage.addListener((request) => {
-    if (request.type === 'player') {
-        store.dispatch(request.msg, request.value ? request.value : null);
-    }
-});</code></pre>
+  if (request.type === "player") {
+    store.dispatch(request.msg, request.value ? request.value : null);
+  }
+});
+</code></pre>
         </article>
     </section>
 
@@ -103,13 +106,13 @@ browser.runtime.onMessage.addListener((request) => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Api.html">Api</a></li><li><a href="module-background.html">background</a></li><li><a href="module-components_albums.html">components/albums</a></li><li><a href="module-components_artists.html">components/artists</a></li><li><a href="module-components_player.html">components/player</a></li><li><a href="module-components_tracks.html">components/tracks</a></li><li><a href="module-components_userInfo.html">components/userInfo</a></li><li><a href="module-popup_App.html">popup/App</a></li><li><a href="module-popup_main.html">popup/main</a></li><li><a href="module-spotify.html">spotify</a></li><li><a href="module-spotifyPlayer.html">spotifyPlayer</a></li><li><a href="module-store_modules_player.html">store/modules/player</a></li><li><a href="module-store_modules_spotify.html">store/modules/spotify</a></li><li><a href="module-store_modules_user.html">store/modules/user</a></li><li><a href="module-store_mutation-types.html">store/mutation-types</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Api.html">Api</a></li><li><a href="module-background.html">background</a></li><li><a href="module-components_albums.html">components/albums</a></li><li><a href="module-components_artists.html">components/artists</a></li><li><a href="module-components_player.html">components/player</a></li><li><a href="module-components_tracks.html">components/tracks</a></li><li><a href="module-components_userInfo.html">components/userInfo</a></li><li><a href="module-popup_App.html">popup/App</a></li><li><a href="module-popup_main.html">popup/main</a></li><li><a href="module-spotify.html">spotify</a></li><li><a href="module-spotifyPlayer.html">spotifyPlayer</a></li><li><a href="module-store_modules_player.html">store/modules/player</a></li><li><a href="module-store_modules_spotify.html">store/modules/spotify</a></li><li><a href="module-store_modules_toastMessage.html">store/modules/toastMessage</a></li><li><a href="module-store_modules_user.html">store/modules/user</a></li><li><a href="module-store_mutation-types.html">store/mutation-types</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Apr 30 2020 09:47:53 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue May 05 2020 11:34:25 GMT+0200 (Central European Summer Time)
 </footer>
 
 <script> prettyPrint(); </script>

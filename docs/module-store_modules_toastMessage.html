@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: store/modules/user</title>
+    <title>JSDoc: Module: store/modules/toastMessage</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: store/modules/user</h1>
+    <h1 class="page-title">Module: store/modules/toastMessage</h1>
 
     
 
@@ -38,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description">Store for Spotify functions - login user, get user info</div>
+            <div class="description">Shows snackbar messages for user</div>
         
 
         
@@ -87,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line6">line 6</a>
+        <a href="store_modules_toastMessage.js.html">store/modules/toastMessage.js</a>, <a href="store_modules_toastMessage.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -145,9 +145,8 @@
 
 
 <div class="description">
-    login - Login a user <br/>
-getToken - Get token from url <br/>
-getUserInfo - Get user Information <br/>
+    alert - shows snackbart with message <br/>
+hideAlert - hide snackbar after click close button <br/>
 </div>
 
 
@@ -185,7 +184,7 @@ getUserInfo - Get user Information <br/>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line45">line 45</a>
+        <a href="store_modules_toastMessage.js.html">store/modules/toastMessage.js</a>, <a href="store_modules_toastMessage.js.html#line45">line 45</a>
     </li></ul></dd>
     
 
@@ -220,28 +219,34 @@ getUserInfo - Get user Information <br/>
                 </tr>
             </thead>
             <tr>
-            <td class="name"><code>getToken</code></td>
-            <td class="type">Bolean</td>
+            <td class="name"><code>timeout</code></td>
+            <td class="type">Number</td>
             
-            <td class="default"><code>getToken</code></td>
-            <td class="description last">Returns a property that is a Bolean</td>
+            <td class="default"><code>timeout</code></td>
+            <td class="description last">Returns a property that is a Number</td>
             </tr><tr>
-            <td class="name"><code>userInfo</code></td>
-            <td class="type">Object</td>
-            
-            <td class="default"><code>userInfo</code></td>
-            <td class="description last">Returns a property that is a Object</td>
-            </tr><tr>
-            <td class="name"><code>userProfile</code></td>
+            <td class="name"><code>alertType</code></td>
             <td class="type">String</td>
             
-            <td class="default"><code>userInfo</code></td>
+            <td class="default"><code>alertType</code></td>
             <td class="description last">Returns a property that is a String</td>
             </tr><tr>
-            <td class="name"><code>loggedIn</code></td>
+            <td class="name"><code>alertIcon</code></td>
+            <td class="type">String</td>
+            
+            <td class="default"><code>alertIcon</code></td>
+            <td class="description last">Returns a property that is a String</td>
+            </tr><tr>
+            <td class="name"><code>message</code></td>
+            <td class="type">String</td>
+            
+            <td class="default"><code>message</code></td>
+            <td class="description last">Returns a property that is a String</td>
+            </tr><tr>
+            <td class="name"><code>showAlert</code></td>
             <td class="type">Bolean</td>
             
-            <td class="default"><code>logged_in</code></td>
+            <td class="default"><code>showAlert</code></td>
             <td class="description last">Returns a property that is a Bolean</td>
             </tr>
             </table>
@@ -292,7 +297,7 @@ getUserInfo - Get user Information <br/>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line27">line 27</a>
+        <a href="store_modules_toastMessage.js.html">store/modules/toastMessage.js</a>, <a href="store_modules_toastMessage.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -327,35 +332,17 @@ getUserInfo - Get user Information <br/>
                 </tr>
             </thead>
             <tr>
-            <td class="name"><code>saveUserInfo</code></td>
-            <td class="type">Object</td>
-            
-            <td class="default"><code>userInfo</code></td>
-            <td class="description last">Sets the state Object property</td>
-            </tr><tr>
-            <td class="name"><code>LOGIN_USER</code></td>
+            <td class="name"><code>hideAlert</code></td>
             <td class="type">Bolean</td>
             
-            <td class="default"><code>logged_in</code></td>
+            <td class="default"><code>showAlert</code></td>
             <td class="description last">Sets the state Bolean property</td>
             </tr><tr>
-            <td class="name"><code>LOGOUT_USER</code></td>
-            <td class="type">Bolean</td>
+            <td class="name"><code>showAlert</code></td>
+            <td class="type">Bolean,String,Number</td>
             
-            <td class="default"><code>logged_in</code></td>
-            <td class="description last">Sets the state Bolean property</td>
-            </tr><tr>
-            <td class="name"><code>GET_TOKEN</code></td>
-            <td class="type">Bolean</td>
-            
-            <td class="default"><code>getToken</code></td>
-            <td class="description last">Sets the state Bolean property</td>
-            </tr><tr>
-            <td class="name"><code>SAVE_TOKEN</code></td>
-            <td class="type">String</td>
-            
-            <td class="default"><code>token</code></td>
-            <td class="description last">Sets the state String property</td>
+            <td class="default"><code>showAlert,alertType,message,timeout</code></td>
+            <td class="description last">Sets the state Bolean, Number, String property</td>
             </tr>
             </table>
 </div>
@@ -405,7 +392,7 @@ getUserInfo - Get user Information <br/>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line99">line 99</a>
+        <a href="store_modules_toastMessage.js.html">store/modules/toastMessage.js</a>, <a href="store_modules_toastMessage.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -476,13 +463,13 @@ getUserInfo - Get user Information <br/>
 
         <tr>
             
-                <td class="name"><code>logged_in</code></td>
+                <td class="name"><code>alertType</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Bolean</span>
+<span class="param-type">String</span>
 
 
             
@@ -493,25 +480,25 @@ getUserInfo - Get user Information <br/>
             
                 <td class="default">
                 
-                    false
+                    "success"
                 
                 </td>
             
 
-            <td class="description last">True If user is loged in</td>
+            <td class="description last">Type of message</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>getToken</code></td>
+                <td class="name"><code>alertIcon</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Bolean</span>
+<span class="param-type">String</span>
 
 
             
@@ -522,19 +509,19 @@ getUserInfo - Get user Information <br/>
             
                 <td class="default">
                 
-                    false
+                    "mdi-checkbox-marked-circle-outline"
                 
                 </td>
             
 
-            <td class="description last">True if token is saved</td>
+            <td class="description last">Message icon</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>token</code></td>
+                <td class="name"><code>message</code></td>
             
 
             <td class="type">
@@ -554,23 +541,20 @@ getUserInfo - Get user Information <br/>
                 </td>
             
 
-            <td class="description last">user Token</td>
+            <td class="description last">Message</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>userInfo</code></td>
+                <td class="name"><code>timeout</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
-|
-
-<span class="param-type">undefined</span>
+<span class="param-type">Number</span>
 
 
             
@@ -581,10 +565,41 @@ getUserInfo - Get user Information <br/>
             
                 <td class="default">
                 
+                    2000
+                
                 </td>
             
 
-            <td class="description last">User information</td>
+            <td class="description last">Snackbar timeout</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>showAlert</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Bolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">If true snackbar is showed</td>
         </tr>
 
     
@@ -623,7 +638,7 @@ getUserInfo - Get user Information <br/>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="store_modules_user.js.html">store/modules/user.js</a>, <a href="store_modules_user.js.html#line11">line 11</a>
+        <a href="store_modules_toastMessage.js.html">store/modules/toastMessage.js</a>, <a href="store_modules_toastMessage.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
