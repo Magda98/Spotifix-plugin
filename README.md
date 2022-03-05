@@ -1,24 +1,15 @@
 # spotifix-plugin
 
-## Project setup
-```
-npm install
-```
+Wtyczka do przeglądarki Google Chrome wykorzystująca API Spotify
+funkcjonalności:
+- odtwarzanie piosenek, albumów, playlist, 
+- przełączanie między utworami
+- dodawanie piosenek do kolejki
+- dodawanie/usuwanie piosenek do ulubionych
+- wyszukiwanie utworów/albumów/playlist/wykonawców
+- zmiana głośności
+- odtwarzanie losowe oraz odtwarzanie w pętli
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![1](https://user-images.githubusercontent.com/33430525/156877977-13ff09b2-b163-4eb1-9056-85e587110ad0.jpg)
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![2](https://user-images.githubusercontent.com/33430525/156877979-9a193227-0ec7-4e2f-84fa-2516aa2a027d.jpg)
