@@ -53,7 +53,7 @@ const getters = {
 const actions = {
   login({ commit, dispatch }, interactive) {
     const baseUrl = "https://accounts.spotify.com/authorize";
-    const clientId = "9e71951e46e74a79ac078ac56f76ba69";
+    const clientId = "57a795ef5d9a4ccca747877d47fbc61d";
     const redirectUri = browser.identity.getRedirectURL("authorize");
     // "http://localhost:8080/spotifix-vue/"
     let scopes = new Array(
